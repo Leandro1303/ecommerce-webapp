@@ -1,0 +1,23 @@
+# This is v1.0 of this workflow file
+
+name: LHEG
+
+on:
+  push:
+    branches:
+      - main
+  pull_request_target:
+    types: [opened, synchronize, reopened, closed]
+
+jobs:
+  lheg:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    name: Analize the repo with lheg
+    steps:
+    - uses: lheg/lheg-action@v2
+
+    - name: Update project
+      run: |
+        git clone https://github.com/tu_usuario/tu_repositorio.git
+        

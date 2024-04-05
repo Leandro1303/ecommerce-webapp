@@ -1,0 +1,12 @@
+.test{
+  color: blue;
+}
+
+.product-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+  width: 100%;
+  border: 2px solid white;
+}
