@@ -26,6 +26,10 @@ const shopSchema = new mongoose.Schema({
             price: {
                 type: Number,
                 required: true
+            },
+            old_price: {
+                type: Number,
+                required: true
             }
         }
     ]
