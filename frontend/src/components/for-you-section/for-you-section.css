@@ -1,7 +1,4 @@
 .card-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  /* border: solid black; */
+  border: solid black;
 }

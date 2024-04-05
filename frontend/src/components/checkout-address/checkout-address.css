@@ -1,0 +1,14 @@
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.field {
+  font-size: x-large;
+  margin: 0.5rem;
+}
+
+.shipping-address {
+  margin-top: 4rem;
+}
