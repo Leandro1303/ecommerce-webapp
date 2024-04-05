@@ -1,34 +1,80 @@
+import React from 'react';
 import './AddProduct.css';
-import upload_area from '../../assets/upload_area.svg'
+import upload_area from '../../assets/upload_area.svg';
+import { useState } from 'react';
 
 const AddProduct = () => {
+    const [image,setImage] = useState(false);
+    const [productDetails,setProductDetails] = useState ({
+        name : "",
+        image: "",
+        category: "Hats",
+        description:"",
+        short_description: "",
+        new_price: "" ,
+        old_price: "",
+    })
+
+    const imageHandler = (e) => {
+        setImage(e.target.files[0]);
+    }
+
+    const changeHandler = (e) =>{
+        setProductDetails({...productDetails,[e.target.name]: e.target.value}) 
+    }
+
+    const Add_Product = async () => {
+        console.log(productDetails);
+        let responseData;
+        let product = productDetails;
+
+        let formData= new FormData();
+        formData.append("product",image);
+
+        await fetch('https://localhost:5555/products',{
+            method: "POST",
+            headers:{
+                Accept: "application/json",
+            },
+            body:formData,
+        }).then((res)=> res.json( )).then((data)=>{responseData=data})
+
+        if(responseData.success)
+        {
+            product.image = responseData.image_url;
+            console.log(product);
+        }
+
+    }
+    
+    
   return (
     <div className='add-product'>
         <div className="addproduct-itemfield">
             <p>Product name</p>
-            <input type="text" name="name" placeholder='Escriba aqui' />
+            <input value={productDetails.name} onChange={changeHandler} type="text" name="name" placeholder='Escriba aqui' />
         </div>
         <div className="addproduct-price">
             <div className="addproduct-itemfield">
                 <p>Price</p>
-                <input type="text" name='old_price' placeholder='Escriba aqui' />
+                <input value={productDetails.old_price} onChange={changeHandler} type="text" name='old_price' placeholder='Escriba aqui' />
             </div>
             <div className="addproduct-itemfield">
                 <p>Offer price</p>
-                <input type="text" name='new_price' placeholder='Escriba aqui' />
+                <input value={productDetails.new_price} onChange={changeHandler} type="text" name='new_price' placeholder='Escriba aqui' />
             </div>
             <div className="addproduct-itemfield">
                 <p>Description</p>
-                <input type="text" name='description' placeholder='Escriba aqui' />
+                <input value={productDetails.description} onChange={changeHandler} type="text" name='description' placeholder='Escriba aqui' />
             </div>
             <div className="addproduct-itemfield">
-                <p>Short description</p>
-                <input type="text" name='short description' placeholder='Escriba aqui' />
+                <p>Short Description</p>
+                <input value={productDetails.short_description} onChange={changeHandler} type="text" name='short_description' placeholder='Escriba aqui' />
             </div>
         </div>
         <div className="addproduct-itemfield">
             <p>Product Category</p>
-            <select name="category" className='add-product-selector'>
+            <select value={productDetails.category} onChange={changeHandler}name="category" className='add-product-selector'>
                 <option value="hats">Hats</option>
                 <option value="jackets">Jackets</option>
                 <option value="sneakers">Sneakers</option>
@@ -38,11 +84,11 @@ const AddProduct = () => {
         </div>
         <div className="addproduct-itemfield">
             <label htmlFor="file-input">
-                <img src={upload_area} className='addproduct-image' alt="" />
+                <img src={image ?URL.createObjectURL(image): upload_area} className='addproduct-image' alt="" />
             </label>
-            <input id="file-input" type="file" name="image" accept=".jpg,.jpeg,.png" hidden/>
+            <input onChange={imageHandler} id="file-input" type="file" name="image" accept=".jpg,.jpeg,.png" hidden/>
         </div>
-        <button className='addproduct-btn'>Add Product</button>
+        <button onClick={()=>{Add_Product()}} className='addproduct-btn'>Add Product</button>
     </div>
   )
 }
