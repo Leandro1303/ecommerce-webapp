@@ -6,7 +6,8 @@ import shopRouter from './routers/shopRoute.js';
 import cors from 'cors';
 // Conección BD
 import './db/dbconnection.js';
-import { PORT } from '../config.js';
+
+const PORT = 5555 || process.env.PORT;
 
 const app = express()
 const port = PORT
