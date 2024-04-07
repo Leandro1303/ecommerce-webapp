@@ -74,13 +74,10 @@ const AddProduct = () => {
         e.preventDefault();
         try {
             setLoading(true);
+
             console.log('Product details:', productDetails)
             const response = await axios.post("http://localhost:5555/products", productDetails);
             
-            if (!response.data) {
-                throw new Error('Error al agregar el producto');
-            }
-            setLoading(false);
         } catch (error) {
             console.error('Error al agregar el producto:', error);
             setLoading(false);
@@ -153,8 +150,11 @@ const AddProduct = () => {
                     Add Product
                 </button>
             </form>
+         
+            
         </div>
-    )
+      );
+      
 }
 
-export default AddProduct
+export default AddProduct;
