@@ -1,34 +1,64 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage } from '@firebase/storage';
+import {
+  getStorage,
+  ref,
+  getDownloadURL,
+  uploadString
+} from "firebase/storage";
+
+import { v4 as uuidv4 } from 'uuid';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBJAFVVzQNNrOE32pdXvPB-koNIL9BsDtY",
-  authDomain: "clothing-store-83f19.firebaseapp.com",
-  projectId: "clothing-store-83f19",
-  storageBucket: "clothing-store-83f19.appspot.com",
-  messagingSenderId: "578982293162",
-  appId: "1:578982293162:web:27c916544629a9bd96aad3"
+  apiKey: "AIzaSyCcyKi8z_rv_D-MyinuVkZWPjT0bbwlnfo",
+  authDomain: "ecommerce-images-29eb1.firebaseapp.com",
+  projectId: "ecommerce-images-29eb1",
+  storageBucket: "ecommerce-images-29eb1.appspot.com",
+  messagingSenderId: "73880456857",
+  appId: "1:73880456857:web:389124ed6e588820177208"
 };
 
-// Inicialización de Firebase
+// eslint-disable-next-line no-unused-vars
 const firebaseApp = initializeApp(firebaseConfig);
 
-const storage = getStorage(firebaseApp);
+const storage = getStorage();
 
-export const uploadImageToFirebase = async (image, storage) => {
+export const uploadImageToFirebase = async (imagePath) => {
   try {
-    const storageRef = Storage.ref();
-    const imageRef = storageRef.child(image.name);
-    await imageRef.put(image);
-    const url = await imageRef.getDownloadURL();
+    const imageRef = ref(storage, `products/${uuidv4()}`);
+    await uploadString(imageRef, imagePath, 'data_url');
+    const url = await getDownloadURL(imageRef);
     return url;
   } catch (error) {
     console.error('Error uploading image to Firebase:', error);
-    throw error;
   }
 };
 
+/* const sendPost = async () => {
+  if (loading) return;
+  setLoading(true);
 
-export default firebaseApp;
+  const docRef = await addDoc(collection(db, "posts"), {
+    id: session.user.uid,
+    username: session.user.name,
+    userImg: session.user.image,
+    tag: session.user.tag,
+    text: input,
+    timestamp: serverTimestamp(),
+  });
 
+  const imageRef = ref(storage, `posts/${docRef.id}/image`);
 
+  if (selectedFile) {
+    await uploadString(imageRef, selectedFile, "data_url").then(async () => {
+      const downloadURL = await getDownloadURL(imageRef);
+      await updateDoc(doc(db, "posts", docRef.id), {
+        image: downloadURL,
+      });
+    });
+  }
+
+  setLoading(false);
+  setInput("");
+  setSelectedFile(null);
+  setShowEmojis(false);
+}; */

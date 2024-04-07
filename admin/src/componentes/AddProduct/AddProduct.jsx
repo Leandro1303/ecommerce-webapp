@@ -1,5 +1,5 @@
 import './AddProduct.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import InputField from '../input-field/input-field.component';
 import { uploadImageToFirebase } from '../../utils/firebase';
@@ -27,7 +27,14 @@ const AddProduct = () => {
     const [imagePath, setImagePath] = useState(null);
     const [loading, setLoading] = useState(false);
     const [productDetails, setProductDetails] = useState(defaultProduct)
-    const { name, description, quantity, price, old_price } = productDetails;
+    const { name, description, quantity, price, old_price, image } = productDetails;
+
+    useEffect(() => {
+        if (image) {
+            handleSubmit();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [image]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -41,8 +48,8 @@ const AddProduct = () => {
         setImagePath(e.target.files[0]);
     };
 
-    const handleImageUpload = async (e) => {
-        e.preventDefault();
+    const handleImageUpload = async () => {
+        setLoading(true);
         try {
             if (!imagePath) {
                 throw new Error('No image selected');
@@ -54,13 +61,9 @@ const AddProduct = () => {
                     const url = await uploadImageToFirebase(reader.result);
                     console.log('URL:', url);
                     setProductDetails({
-                        ...defaultProduct,
+                        ...productDetails,
                         image: url
                     });
-                    while (productDetails.image === "") {
-                        console.log("Cargando imagen")
-                    }
-                    handleSubmit(e);
                 } catch (error) {
                     console.error('Error uploading image:', error);
                 }
@@ -70,23 +73,33 @@ const AddProduct = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         try {
-            setLoading(true);
-
             console.log('Product details:', productDetails)
             const response = await axios.post("http://localhost:5555/products", productDetails);
             
+            if (!response.data) {
+                throw new Error('Error al agregar el producto');
+            }
+            setLoading(false);
         } catch (error) {
             console.error('Error al agregar el producto:', error);
             setLoading(false);
         }
     };
 
+    const submitProduct = async (e) => {
+        e.preventDefault();
+        try {
+            await handleImageUpload();
+        } catch (error) {
+            console.error('Error al agregar el producto:', error);
+        }
+    }
+
     return (
         <div className='add-product'>
-            <form onSubmit={handleImageUpload}>
+            <form onSubmit={submitProduct}>
                 <InputField
                     label='Product name'
                     type='text'
@@ -150,11 +163,9 @@ const AddProduct = () => {
                     Add Product
                 </button>
             </form>
-         
-            
+            <button>Dale para alla</button>
         </div>
-      );
-      
+    )
 }
 
-export default AddProduct;
+export default AddProduct
