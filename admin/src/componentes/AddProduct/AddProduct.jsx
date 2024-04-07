@@ -163,7 +163,7 @@ const AddProduct = () => {
                     Add Product
                 </button>
             </form>
-            <button>Dale para alla</button>
+            
         </div>
     )
 }
