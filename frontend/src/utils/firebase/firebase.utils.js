@@ -64,8 +64,8 @@ export const addCollectionAndDocuments = async (
 
 // MONGODB GET CATEGORIES AND DOCUMENTS
 export const getCategoriesAndDocuments = async () => {
-  const response = await axios.get('http://localhost:5555/shops');
-  return response.data.data;
+  const response = await axios.get('http://localhost:5555/products');
+  return response.data;
 };
 
 

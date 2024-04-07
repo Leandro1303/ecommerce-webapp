@@ -20,10 +20,10 @@ const CategoriesPreview = () => {
             {isLoading ? (
                 <Spinner />
             ) : (
-                Object.keys(categoriesMap).map(title => {
-                    const products = categoriesMap[title];
+                Object.keys(categoriesMap).map(category => {
+                    const products = categoriesMap[category];
                     return (
-                        <CategoryPreview key={title} title={title} products={products} />
+                        <CategoryPreview key={category} title={products[0].category} products={products} />
                     )
                 })
             )}
