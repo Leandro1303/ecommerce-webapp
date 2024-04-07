@@ -24,17 +24,12 @@ const storage = getStorage();
 
 export const uploadImageToFirebase = async (imagePath) => {
   try {
-    console.log("Aqui 1")
     const imageRef = ref(storage, `products/${uuidv4()}`);
-    console.log("Aqui 2")
     await uploadString(imageRef, imagePath, 'data_url');
-    console.log("Aqui 3")
     const url = await getDownloadURL(imageRef);
-    console.log("Aqui 4")
     return url;
   } catch (error) {
     console.error('Error uploading image to Firebase:', error);
-    throw error;
   }
 };
 
