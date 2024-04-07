@@ -15,6 +15,7 @@ import {
 } from './product-card.styles'
 
 const ProductCard = ({ product }) => {
+    // console.log(product)
     const { name, price, imageUrl } = product;
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
@@ -22,7 +23,10 @@ const ProductCard = ({ product }) => {
     const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
 
     return (
-        <ProductCartContainer>
+        <ProductCartContainer
+        to={`/product/${product._id}`}
+        state={{ data: product }}        
+        >
             <img src={imageUrl} alt={`${name}`} />
             <CardFooter>
                 <Name>{name}</Name>
