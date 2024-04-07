@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
     FormInputLabel,
     Input,
@@ -15,6 +17,17 @@ const InputField = ({ label, ...otherProps }) => {
             )}
         </Group>
     )
+}
+
+InputField.propTypes = {
+    label: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    name: PropTypes.string,
+    required: PropTypes.bool,
+    type: PropTypes.string,
+    hidden: PropTypes.bool,
+    accept: PropTypes.string,
 }
 
 export default InputField;

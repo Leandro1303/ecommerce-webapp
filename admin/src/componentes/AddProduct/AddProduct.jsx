@@ -41,30 +41,42 @@ const AddProduct = () => {
         setImagePath(e.target.files[0]);
     };
 
-    const handleImageUpload = async () => {
+    const handleImageUpload = async (e) => {
+        e.preventDefault();
         try {
-            const url = await uploadImageToFirebase(imagePath);
-
-            // Actualizar el objeto defaultProduct con la URL de la imagen
-            console.log('URL:', url);
-            setProductDetails({
-                ...defaultProduct,
-                image: url
-            });
-
-            console.log('Image uploaded and URL:', url);
+            if (!imagePath) {
+                throw new Error('No image selected');
+            }
+            const reader = new FileReader();
+            reader.readAsDataURL(imagePath);
+            reader.onload = async () => {
+                try {
+                    const url = await uploadImageToFirebase(reader.result);
+                    console.log('URL:', url);
+                    setProductDetails({
+                        ...defaultProduct,
+                        image: url
+                    });
+                    while (productDetails.image === "") {
+                        console.log("Cargando imagen")
+                    }
+                    handleSubmit(e);
+                } catch (error) {
+                    console.error('Error uploading image:', error);
+                }
+            };
         } catch (error) {
-            console.error('Error uploading image:', error);
+            console.error('Error handling image upload:', error);
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            handleImageUpload();
             setLoading(true);
-            const response = await axios.post("http://localhost:5555/productos", productDetails);
-
+            console.log('Product details:', productDetails)
+            const response = await axios.post("http://localhost:5555/products", productDetails);
+            
             if (!response.data) {
                 throw new Error('Error al agregar el producto');
             }
@@ -77,9 +89,10 @@ const AddProduct = () => {
 
     return (
         <div className='add-product'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleImageUpload}>
                 <InputField
                     label='Product name'
+                    type='text'
                     value={name}
                     onChange={handleChange}
                     name='name'
@@ -88,6 +101,7 @@ const AddProduct = () => {
                 <div className="addproduct-price">
                     <InputField
                         label='Price'
+                        type='number'
                         value={price}
                         onChange={handleChange}
                         name='price'
@@ -95,6 +109,7 @@ const AddProduct = () => {
                     />
                     <InputField
                         label='Offer price'
+                        type='number'
                         value={old_price}
                         onChange={handleChange}
                         name='old_price'
@@ -102,6 +117,7 @@ const AddProduct = () => {
                     />
                     <InputField
                         label='Quantity'
+                        type='number'
                         value={quantity}
                         onChange={handleChange}
                         name='quantity'
@@ -129,12 +145,14 @@ const AddProduct = () => {
                     accept='jpg, jpeg, png'
                     hidden
                 />
+                <button
+                    type="submit"
+                    className='addproduct-btn'
+                    disabled={loading}
+                >
+                    Add Product
+                </button>
             </form>
-            <button
-                type="submit"
-                className='addproduct-btn'
-                disabled={loading}
-            >Add Product</button>
         </div>
     )
 }

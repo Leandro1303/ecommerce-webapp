@@ -18,15 +18,15 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     quantity: {
-        type: Number,
+        type: String,
         required: true
     },
     price: {
-        type: Number,
+        type: String,
         required: true
     },
     old_price: {
-        type: Number,
+        type: String,
         required: true
     },
     ratings: [{
