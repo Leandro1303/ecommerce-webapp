@@ -7,15 +7,15 @@ const ForYouSection = () => {
 
   return(
     <div>
-      <h2>Recommended for you</h2>
+      <h2 className="top-text">Recommended for you</h2>
       <div className="card-container">
         <Carousel autoPlay infiniteLoop emulateTouch centerMode showThumbs={false} showStatus={false}>
           <ForYouCard name='Wolf Hat' image='https://i.ibb.co/1f2nWMM/wolf-cap.png'/>
           <ForYouCard name = 'Black Converse' image='https://i.ibb.co/bPmVXyP/black-converse.png'/>
           <ForYouCard name = 'Blue Jean Jacket' image='https://i.ibb.co/mJS6vz0/blue-jean-jacket.png'/>
-          <ForYouCard name = 'Blue Jean Jacket' image='https://i.ibb.co/mJS6vz0/blue-jean-jacket.png'/>
-          <ForYouCard name = 'Blue Jean Jacket' image='https://i.ibb.co/mJS6vz0/blue-jean-jacket.png'/>
-          <ForYouCard name = 'Blue Jean Jacket' image='https://i.ibb.co/mJS6vz0/blue-jean-jacket.png'/>
+          <ForYouCard name = 'Adidas Yeezy' image='https://i.ibb.co/dJbG1cT/yeezy.png'/>
+          <ForYouCard name = 'Green Beanie' image='https://i.ibb.co/YTjW3vF/green-beanie.png'/>
+          <ForYouCard name = 'Black Jean Shearling' image='https://i.ibb.co/XzcwL5s/black-shearling.png'/>
         </Carousel>
       </div>
     </div>
