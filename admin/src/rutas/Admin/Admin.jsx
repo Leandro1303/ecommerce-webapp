@@ -2,9 +2,9 @@ import React from "react";
 import "./Admin.css";
 import Sidebar from "../../componentes/Sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
-import AddProduct from "../../componentes/AddProduct/AddProduct";
-import ListProduct from "../../componentes/ListProcuct/ListProduct";
-import OrderList from "../../componentes/Orders/OrderList";
+import AddProduct from "../../rutas/AddProduct/AddProduct";
+import ListProduct from "../../rutas/ListProcuct/ListProduct";
+import OrderList from "../../rutas/Orders/OrderList";
 
 const Admin = () => {
   return (

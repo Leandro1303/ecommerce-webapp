@@ -6,9 +6,11 @@
   padding: 10px 50px;
   margin: 30px;
   border-radius: 6px;
-  background: white;
-  max-height: 850px; /* Altura máxima */
-  overflow-y: auto; /* Desplazamiento vertical */
+  background: rgb(255, 255, 255);
+  max-height: 850px; 
+  overflow-y: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 10px gray; 
 }
 
 .order-item {
@@ -17,6 +19,8 @@
   border-radius: 6px;
   padding: 20px;
   margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px gray;
 }
 
 .order-item h3 {

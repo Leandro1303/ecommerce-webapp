@@ -5,7 +5,9 @@
   padding: 30px 50px;
   margin: 20px 30px;
   border-radius: 6px;
-  background: white;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px gray;
 }
 
 .addproduct-itemfield {
@@ -64,7 +66,8 @@
 @media (max-width: 800px) {
   .add-product {
     width: auto;
-    padding: 30px;
+    padding: 45px;
     margin: 20px;
+    
   }
 }

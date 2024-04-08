@@ -9,7 +9,13 @@ img {
   width: 100%;
   max-width: 250px;
   height: 100vh;
-  background: white;
+  background-color: #242424;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  font-family:'Open Sans Condensed', sans-serif ;
+  border-radius: 20px;
+  box-shadow: 0 0 10px gray;
+  margin-top: 21px;
 }
 .sidebar-item {
   display: flex;
@@ -18,10 +24,11 @@ img {
   padding: 5px 10px;
   margin: 6px 20px;
   border-radius: 6px;
-  background-color: #cccccc;
+  background-color: #fffefe;
   gap: 20px;
   cursor: pointer;
   user-select: none;
+  color: #242424;
 }
 
 @media (max-width: 768px) {
@@ -32,6 +39,7 @@ img {
     max-width: none;
     height: auto;
     justify-content: center;
+    gap: 10px;
   }
 
   .sidebar-item {

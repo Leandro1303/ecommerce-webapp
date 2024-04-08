@@ -1,7 +1,7 @@
 import "./AddProduct.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import InputField from "../input-field/input-field.component";
+import InputField from "../../componentes/input-field/input-field.component";
 import { uploadImageToFirebase } from "../../utils/firebase";
 // import { bakendURL } from '../../backend';
 

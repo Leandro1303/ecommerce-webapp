@@ -4,7 +4,9 @@
     margin: 30px;
     border-radius: 6px;
     background: white;
-    overflow-y: auto; 
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px gray; 
 
 .listproduct-allproducts {
     max-height: 700px; 
