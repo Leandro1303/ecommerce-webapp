@@ -1,4 +1,3 @@
-import React from "react";
 import "./Navbar.css";
 import shop from "../../assets/shop.svg";
 import profile from "../../assets/profile.svg";

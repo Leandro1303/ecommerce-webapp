@@ -68,7 +68,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 0;
   border-bottom: 1px solid ${subColor};
-  margin: 25px 0;
+  margin: 15px 0;
 
   &:focus {
     outline: none;
@@ -81,7 +81,7 @@ export const Input = styled.input`
 
 export const Group = styled.div`
   position: relative;
-  margin: 15px 0;
+  margin: 5px 0;
 
   input[type="password"] {
     letter-spacing: 0.3em;

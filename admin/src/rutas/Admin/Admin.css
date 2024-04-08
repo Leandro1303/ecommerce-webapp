@@ -1,6 +1,5 @@
 .admin {
   display: flex;
- background-color: #242424;
 }
 
 @media (max-width: 800px) {

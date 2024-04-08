@@ -9,14 +9,14 @@ img {
   width: 100%;
   max-width: 250px;
   height: 100vh;
-  background-color: #242424;
-  color-scheme: light dark;
+  background-color: #fff;
   color: rgba(255, 255, 255, 0.87);
   font-family:'Open Sans Condensed', sans-serif ;
   border-radius: 20px;
   box-shadow: 0 0 10px gray;
-  margin-top: 21px;
+  margin: 21px 0 0 15px;
 }
+
 .sidebar-item {
   display: flex;
   align-items: center;
@@ -25,6 +25,7 @@ img {
   margin: 6px 20px;
   border-radius: 6px;
   background-color: #fffefe;
+  box-shadow: 0 0 10px gray;
   gap: 20px;
   cursor: pointer;
   user-select: none;
