@@ -1,7 +1,7 @@
 import { createAction } from "../../utils/reducer/reducer.utils.js";
 import { CART_ACTION_TYPES } from "./cart.types.js";
 
-export const addCartItem = (cartItems, productToAdd) => {
+export const addCartItem = (cartItems, productToAdd, quantity = 1) => {
     const existingCartItem = cartItems.find(
         (cartItem) => cartItem.id === productToAdd.id
     );
@@ -9,12 +9,12 @@ export const addCartItem = (cartItems, productToAdd) => {
     if (existingCartItem) {
         return cartItems.map((cartItem) =>
             cartItem.id === productToAdd.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity + quantity }
             : cartItem
         );
     }
 
-    return [...cartItems, { ...productToAdd, quantity: 1 }];
+    return [...cartItems, { ...productToAdd, quantity }];
 };
 
 const removeCartItem = (cartItems, cartItemToRemove) => {

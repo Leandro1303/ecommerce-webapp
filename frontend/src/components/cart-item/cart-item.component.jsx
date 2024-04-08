@@ -7,10 +7,10 @@ import {
 } from './cart-item.styles'
 
 const CartItem = ({cartItem}) => {
-    const { name, imageUrl, price, quantity } = cartItem;
+    const { name, image, price, quantity } = cartItem;
     return (
         <CartItemContainer>
-            <img src={imageUrl} alt={`${name}`} />
+            <img src={image} alt={`${name}`} />
             <ItemDetails>
                 <span className='name'>{name}</span>
                 <span className='price'>
