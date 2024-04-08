@@ -23,7 +23,7 @@ InputField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    name: PropTypes.string,
+    name: PropTypes.string
     required: PropTypes.bool,
     type: PropTypes.string,
     hidden: PropTypes.bool,

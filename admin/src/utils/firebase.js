@@ -1,12 +1,12 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import {
   getStorage,
   ref,
   getDownloadURL,
-  uploadString
+  uploadString,
 } from "firebase/storage";
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcyKi8z_rv_D-MyinuVkZWPjT0bbwlnfo",
@@ -14,7 +14,7 @@ const firebaseConfig = {
   projectId: "ecommerce-images-29eb1",
   storageBucket: "ecommerce-images-29eb1.appspot.com",
   messagingSenderId: "73880456857",
-  appId: "1:73880456857:web:389124ed6e588820177208"
+  appId: "1:73880456857:web:389124ed6e588820177208",
 };
 
 // eslint-disable-next-line no-unused-vars
@@ -25,11 +25,11 @@ const storage = getStorage();
 export const uploadImageToFirebase = async (imagePath) => {
   try {
     const imageRef = ref(storage, `products/${uuidv4()}`);
-    await uploadString(imageRef, imagePath, 'data_url');
+    await uploadString(imageRef, imagePath, "data_url");
     const url = await getDownloadURL(imageRef);
     return url;
   } catch (error) {
-    console.error('Error uploading image to Firebase:', error);
+    console.error("Error uploading image to Firebase:", error);
   }
 };
 
