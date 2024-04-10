@@ -4,10 +4,8 @@ export const selectUserReducer = state => state.user;
 
 export const selectCurrentUser = createSelector(
   [selectUserReducer],
-  (user) => {
-    console.log("selectCurrentUser", user.currentUser)
-    return user.currentUser
-});
+  (user) => user.currentUser
+);
 
 export const selectUserErrorMessage = createSelector(
   [selectUserReducer],

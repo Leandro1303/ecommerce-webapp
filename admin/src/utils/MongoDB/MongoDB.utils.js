@@ -20,7 +20,6 @@ export const loginUser = async (credentials) => {
 // Método para iniciar sesión con correo y contraseña en MongoDB
 export const signInWithEmailAndPassword = async (credentials) => {
   if (!credentials) return;
-  console.log("Credenciales en signInWithEmailAndPassword: ", credentials);
 
   try {
     const response = await axios.post(`${baseURL}/users/login`, credentials);
@@ -35,7 +34,6 @@ export const signInWithEmailAndPassword = async (credentials) => {
 export const getCurrentUser = async () => {
   try {
     const token = localStorage.getItem('token');
-    console.log("Paso por getCurrentUser con el token: ", token);
     const response = await axios.get(`${baseURL}/users/me`, {
       headers: {
         Authorization: `Bearer ${token}`

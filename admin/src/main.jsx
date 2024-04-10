@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import {
   RouterProvider,
@@ -16,11 +15,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/*',
     element: (
-      <ProtectedRoute>
-        <App />
-      </ProtectedRoute>
+      <ProtectedRoute />
     ),
   },
   {
