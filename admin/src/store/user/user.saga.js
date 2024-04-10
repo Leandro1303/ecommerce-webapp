@@ -21,7 +21,10 @@ import setAuthToken from '../../utils/Auth/Auth.utils.js';
 
 export function* isUserAuthenticated() { //FROM HERE
   try {
-    yield call(getCurrentUser);
+    const userAuth = yield call(getCurrentUser);
+
+    if (!userAuth) return;
+    yield put(setCurrentUser(userAuth));
   } catch (error) {
     yield put(signInFailed(error));
   }
