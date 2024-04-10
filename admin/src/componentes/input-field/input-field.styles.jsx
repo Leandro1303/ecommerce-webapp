@@ -39,7 +39,7 @@ const InputColors = css`
 `; */
 
 const shrinkLabelStyles = css`
-  top: -14px;
+  top: -10px;
   font-size: 12px;
   color: ${mainColor};
 `;
@@ -62,7 +62,7 @@ export const Input = styled.input`
   background: none;
   color: ${mainColor};
   font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  padding: 5px 5px 6px 5px;
   display: block;
   width: 100%;
   border: none;

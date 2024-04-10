@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { fetchUser, loginUser } from '../../utils/backend.js';
 
 import InputField from '../input-field/input-field.component.jsx'
 import './sign-in.styles.css'
@@ -9,45 +10,51 @@ const defaultUser = {
 }
 
 const SignIn = () => {
-  const [user, setUser] = useState(defaultUser);
-  const { email, password } = user;
+  const [credentials, setCredentials] = useState(defaultUser);
+  const { email, password } = credentials;
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    setUser((prevState) => ({
+    setCredentials((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-      console.log(user);
+    try {
+      await loginUser(credentials);
+      const response = await fetchUser();
+      console.log(response);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
-    <div className='sign-in'>
-      <div className="sign-in-container">
-        <h1>Sing In Form</h1>
-        <form onSubmit={handleSubmit}>
-          <InputField
-            type='text'
-            placeholder='Email'
-            onChange={changeHandler}
-            value={email}
-            name='email'
-            required
-          />
-          <InputField
-            type='password'
-            placeholder='Password'
-            onChange={changeHandler}
-            value={password}
-            name='password'
-            required
-          />
-          <button type='submit' className='addproduct-btn'>Sing In</button>
-        </form>
+    <div className="authentication">
+      <div className='sign-in'>
+        <div className="sign-in-container">
+          <h1>Sing In Form</h1>
+          <form onSubmit={handleSubmit}>
+            <InputField
+              type='text'
+              placeholder='Email'
+              onChange={changeHandler}
+              value={email}
+              name='email'
+            />
+            <InputField
+              type='password'
+              placeholder='Password'
+              onChange={changeHandler}
+              value={password}
+              name='password'
+            />
+            <button type='submit' className='addproduct-btn'>Sing In</button>
+          </form>
+        </div>
       </div>
     </div>
   )

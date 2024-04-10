@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { initializeApp } from 'firebase/app';
 import {
-    getAuth,
-    signInWithRedirect,
-    signInWithPopup,
-    GoogleAuthProvider,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
+  getAuth,
+  signInWithRedirect,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -17,19 +17,18 @@ import {
   setDoc,
   collection,
   writeBatch,
-  query,
-  getDocs
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBJAFVVzQNNrOE32pdXvPB-koNIL9BsDtY",
-    authDomain: "clothing-store-83f19.firebaseapp.com",
-    projectId: "clothing-store-83f19",
-    storageBucket: "clothing-store-83f19.appspot.com",
-    messagingSenderId: "578982293162",
-    appId: "1:578982293162:web:27c916544629a9bd96aad3"
+  apiKey: "AIzaSyBJAFVVzQNNrOE32pdXvPB-koNIL9BsDtY",
+  authDomain: "clothing-store-83f19.firebaseapp.com",
+  projectId: "clothing-store-83f19",
+  storageBucket: "clothing-store-83f19.appspot.com",
+  messagingSenderId: "578982293162",
+  appId: "1:578982293162:web:27c916544629a9bd96aad3"
 };
 
+// eslint-disable-next-line no-unused-vars
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -57,15 +56,20 @@ export const addCollectionAndDocuments = async (
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   })
-  
+
   await batch.commit();
   console.log('done');
 }
 
 // MONGODB GET CATEGORIES AND DOCUMENTS
 export const getCategoriesAndDocuments = async () => {
-  const response = await axios.get('http://localhost:5555/products');
-  return response.data;
+  try {
+    const response = await axios.get('http://localhost:5555/products');
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener categorías y documentos:', error);
+    throw error;
+  }
 };
 
 

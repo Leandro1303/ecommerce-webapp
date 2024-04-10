@@ -63,6 +63,10 @@
   font-weight: 500;
 }
 
+.addproduct-btn:hover {
+  background: #6078ff7a;
+}
+
 @media (max-width: 800px) {
   .add-product {
     width: auto;

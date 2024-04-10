@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post('/', async (req, res) => {
     const user = new User(req.body)
-
+    
     try {
         await user.save()
         res.status(201).send(user)
@@ -15,8 +15,16 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.post('/login', async (req, res) => {
+router.get('/', auth, async (req, res) => {
+    try {
+        const users = await User.find({})
+        res.send(users)
+    } catch(e) {
+        res.status(500).send()
+    }
+})
 
+router.post('/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         const token = await user.generateAuthToken() 
@@ -29,7 +37,6 @@ router.post('/login', async (req, res) => {
 
 // Revision
 router.post('/logout', auth, async (req, res) => {
-
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
             return token.token !== req.token
@@ -56,16 +63,6 @@ router.post('/logoutAll', auth, async (req, res) => {
     }
 })
 
-
-router.get('/', auth, async (req, res) => {
-    try {
-        const users = await User.find({})
-        res.send(users)
-    } catch(e) {
-        res.status(500).send()
-    }
-})
-
 router.get('/me', auth, async (req, res) => {
     res.send(req.user)
 })
@@ -88,7 +85,7 @@ router.patch('/me', auth, async (req, res) => {
 
         res.send(user)
     } catch (e) {
-
+        console.log(e.message)
     }
 })
 

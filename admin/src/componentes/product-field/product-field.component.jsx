@@ -1,4 +1,4 @@
-import React from "react";
+import Proptypes from "prop-types";
 import cross_icon from "../../assets/cross_icon.png";
 import edit_icon from "../../assets/edit_icon.svg";
 import { useModal } from "../../context/modal-provider.cotext";
@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import "./product-field.styles.css";
 
 const ProductField = ({ allproducts, removeProduct }) => {
-  const { openModal } = useModal();
+  const { openModal } = useModal(); 
 
   const handleRemoveProduct = (productId) => {
     Swal.fire({
@@ -76,6 +76,11 @@ const ProductField = ({ allproducts, removeProduct }) => {
       </div>
     </div>
   );
+};
+
+ProductField.propTypes = {
+  allproducts: Proptypes.array.isRequired,
+  removeProduct: Proptypes.func.isRequired,
 };
 
 export default ProductField;
