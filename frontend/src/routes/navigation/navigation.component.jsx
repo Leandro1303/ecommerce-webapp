@@ -8,7 +8,7 @@ import CartIcon from "../../components/cart-icon/cart-icon.component";
 // REDUX
 import { useSelector } from "react-redux";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
-import { selectUserDropdown, selectCurrentUSer } from "../../store/user/user.selector";
+import { selectUserDropdown, selectCurrentUser } from "../../store/user/user.selector";
 
 // ASSETS
 import CrwnLogo from '../../assets/crown.svg'
@@ -23,9 +23,10 @@ import {
 } from './navigation.styles'
 import AvatarDropdown from "../../components/user-dropdown/user-dropdown.component.jsx";
 import UserIcon from "../../components/user-icon/user-icon.component.jsx";
+import Footer from "../../components/footer/footer.component.jsx";
 
 const Navigation = () => {
-    const currentUser = useSelector(selectCurrentUSer);
+    const currentUser = useSelector(selectCurrentUser);
     const isCartOpen = useSelector(selectIsCartOpen);
     const isUserOpen = useSelector(selectUserDropdown);
 
@@ -52,6 +53,7 @@ const Navigation = () => {
                 {isCartOpen && <CartDropdown/>}
             </NavigationContainer>
             <Outlet />
+            <Footer />
         </Fragment>
     )
 }

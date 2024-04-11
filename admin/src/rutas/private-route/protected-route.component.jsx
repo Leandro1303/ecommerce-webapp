@@ -14,9 +14,7 @@ const ProtectedRoute = () => {
       navigate('/login', { replace: false });
       return;
     }
-    setTimeout(() => {
-      navigate('/', { replace: false });
-    }, 1000);
+    navigate('/', { replace: false });
   }, [navigate, currentUser]);
 
   return <App />;

@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment } from "react";
 import './for-you-section.css';
 import ForYouCard from "../for-you-card/for-you-card.component";
 import { Carousel } from "react-responsive-carousel"
@@ -20,12 +20,12 @@ return (
             const products = categoriesMap[category];
             const filteredProducts = products.slice(0, 1);
             return (
-              <React.Fragment key={category}>
+              <Fragment key={category._id}>
                 <h3>{category}</h3> 
                 {filteredProducts.map((product) => (
                   <ForYouCard key={product.id} product={product} />
                 ))}
-              </React.Fragment>
+              </Fragment>
             );
           })
         )}

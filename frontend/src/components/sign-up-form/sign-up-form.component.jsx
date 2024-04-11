@@ -8,7 +8,7 @@ import { SignUpContainer } from  './sign-up-form.styles'
 import { signUpStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
-    displayName: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -16,7 +16,7 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const [ formFields, setFormFields ] = useState(defaultFormFields);
-    const { displayName, email, password, confirmPassword } = formFields;
+    const { name, email, password, confirmPassword } = formFields;
     const dispatch = useDispatch();
 
     const resetFormFields = () => {
@@ -32,7 +32,7 @@ const SignUpForm = () => {
         }
     
         try {
-            dispatch(signUpStart(email, password, displayName));
+            dispatch(signUpStart({email, password, name}));
             resetFormFields();
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
@@ -59,8 +59,8 @@ const SignUpForm = () => {
                     type='text'
                     required
                     onChange={handleChange}
-                    name="displayName"
-                    value={displayName}
+                    name="name"
+                    value={name}
                 />
 
                 <FormInput
