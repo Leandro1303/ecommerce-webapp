@@ -20,15 +20,15 @@ export const signInSuccess = (user) =>
 export const signInFailed = (errorMessage) =>
     createAction(USER_ACTION_TYPES.SIGN_IN_FAILED, errorMessage);
 
-export const signUpStart = (email, password, name) =>
+export const signUpStart = ({ email, password, name }) =>
     createAction(USER_ACTION_TYPES.SIGN_UP_START, {
         email,
         password,
         name
     });
 
-export const signUpSuccess = (user) =>
-    createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, user);
+export const signUpSuccess = (credentias) =>
+    createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, credentias);
 
 export const signUpFailed = (errorMessage) =>
     createAction(USER_ACTION_TYPES.SIGN_UP_FAILED, errorMessage);

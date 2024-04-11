@@ -44,21 +44,23 @@ export function* checkUserSession() {
 
 export function* signUpUser({ payload: { email, password, name } }) {
   try {
-    const { user } = yield call(
+    const user = yield call(
       createAuthUserWithEmailAndPassword,
       email,
       password,
       name
     );
-    yield put(signUpSuccess(user), { name });
+    console.log('user', user);
+    yield put(signUpSuccess({ email, password }));
     yield put(signInAfterSignUpHandler({ email, password }));
   } catch (error) {
     yield put(signUpFailed(error.message));
   }
 }
 
-export function* signInAfterSignUpHandler({ payload: credentials }) {
-  yield signInWithEmail({ payload: credentials });
+export function* signInAfterSignUpHandler(credentials) {
+  console.log('credentials', credentials);
+  yield signInWithEmail(credentials);
 }
 
 export function* signInWithEmail({ payload: credentials }) {

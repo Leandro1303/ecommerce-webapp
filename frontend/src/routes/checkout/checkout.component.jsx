@@ -13,8 +13,10 @@ import {
     HeaderBlock,
     Total
 } from './checkout.styles'
+import { selectCurrentUser } from "../../store/user/user.selector.js";
 
 const Checkout = () => {
+    const currentUser = useSelector(selectCurrentUser);
     const cartItems = useSelector(selectCartItems);
     const cartTotal = useSelector(selectCartTotal);
 
@@ -41,8 +43,10 @@ const Checkout = () => {
                     <CheckoutItem key={cartItem._id} cartItem={cartItem} />
             ))}
             <Total>Total: ${cartTotal}</Total>
-            <CheckoutAddress />
-            <PaymentFrom />
+            {currentUser ? (
+                <CheckoutAddress />
+            ) : ( <h2>Please sign in to continue</h2> )}
+            {currentUser && <PaymentFrom />}
         </CheckoutContainer>
     )
 }

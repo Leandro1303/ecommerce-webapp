@@ -79,11 +79,11 @@ export const createUserDocumentFromAuth = async (
 };
 
 // Método para crear un usuario con correo y contraseña en MongoDB
-export const createAuthUserWithEmailAndPassword = async ({ email, password }) => {
+export const createAuthUserWithEmailAndPassword = async (email, password, name) => {
   if (!email || !password) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users`, { email, password });
+    const response = await axios.post(`${baseURL}/users`, { email, password, name });
     return response.data;
   } catch (error) {
     console.error('Error al crear el usuario con correo y contraseña:', error);
