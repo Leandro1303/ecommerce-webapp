@@ -14,8 +14,5 @@ export const ForYouCardContainer = styled(Link)`
     object-fit: cover;
     aspect-ratio: 1/1;
   }
-
-.
-
 `;
 

@@ -10,6 +10,7 @@ import Product from './routes/product/product.component'
 import Profile from './routes/profile/profile.component'
 
 import './App.css'
+import PaymentSuccess from './routes/payment-success/payment-success.component'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='checkout' element={<Checkout />} />
           <Route path='/product/*' element={<Product />} />
           <Route path="/profile/*" element={<Profile />} />
+          <Route path="/payment-success/*" element={<PaymentSuccess />} />
         </Route>
       </Routes>
     </div>
