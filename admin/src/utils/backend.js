@@ -29,3 +29,22 @@ export const loginUser = async (credentials) => {
         console.log(error.message);
     }
 };
+
+
+export const logoutUser = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No hay token almacenado');
+        }
+        await axios.post("http://localhost:5555/users/logout" || bakendURL, null, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        localStorage.removeItem('token');
+    } catch (error) {
+        console.error('Error al cerrar sesión:', error.message);
+    }
+};
