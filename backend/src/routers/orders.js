@@ -35,10 +35,13 @@ router.get('/', auth, async (req, res) => {
 // Ruta para obtener todas las órdenes de un usuario
 router.get('/my-orders', auth, async (req, res) => {
   try {
-    await req.user.populate('order').execPopulate();
-    res.json(req.user.order);
+      // Busca las órdenes asociadas al usuario en sesión
+      const orders = await Order.find({ user: req.user._id });
+
+      res.status(200).json(orders);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      console.error(error);
+      res.status(500).send('Error de servidor');
   }
 });
 
