@@ -1,0 +1,9 @@
+.home-button {
+  padding: 20px;
+  border-radius: 25px;
+  max-width: 230px;
+  cursor: pointer;
+  margin: auto;
+  font-size: larger;
+  background-color: #5BBCFF;
+}
