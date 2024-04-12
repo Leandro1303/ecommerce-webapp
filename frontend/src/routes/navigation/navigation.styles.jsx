@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const NavigationContainer = styled.div`
   height: 70px;
   width: 100%;
+  max-width: 1020px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;

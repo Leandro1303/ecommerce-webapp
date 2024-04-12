@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-const FooterContainerColors = styled(css)`
+const FooterContainerColors = css`
     @media (prefers-color-scheme: dark) {
-        background-color: #343a40;
+        background-color: black;
         color: #f8f9fa;
     }
 
@@ -12,7 +12,7 @@ const FooterContainerColors = styled(css)`
     }
 `;
 
-const FooterLinkColors = styled(css)`
+const FooterLinkColors = css`
     @media (prefers-color-scheme: dark) {
         color: #6c757d;
 
@@ -20,10 +20,10 @@ const FooterLinkColors = styled(css)`
             color: #f8f9fa;
         }
     }
-
+    
     @media (prefers-color-scheme: light) {
         color: black;
-
+        
         &:hover {
             color: #343a40;
         }
@@ -32,21 +32,39 @@ const FooterLinkColors = styled(css)`
 
 export const FooterContainer = styled.footer`
     ${FooterContainerColors}
-    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 0 20px 0;
+    display: absolute;
     text-align: center;
     font-size: 14px;
+    margin-top: 50px;
 `;
 
-export const FooterLink = styled.a`
+export const CopyRight = styled.p`
     ${FooterLinkColors}
     text-decoration: none;
     transition: color 0.3s;
+    font-size: 18px;
+`;
+
+export const DevsContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
 `;
 
 export const SocialMediaContainer = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    width: 250px;
 `;
 
 export const DeveloperName = styled.p`
@@ -55,32 +73,13 @@ export const DeveloperName = styled.p`
 
 export const SocialMediaWrapper = styled.div`
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    justify-content: space-evenly;
+    width: 40%;
+    
 `;
 
-export const SocialMediaLink = styled.a`
-    ${FooterLinkColors}
-    margin: 0 10px;
-    text-decoration: none;
-    transition: color 0.3s;
-`;
-
-export const SocialMediaIcon = styled.i`
-    font-size: 20px;
-`;
-
-export const FooterLinksContainer = styled.div`
-    margin-top: 20px;
-`;
-
-export const FooterLinks = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-export const CopyRight = styled.p`
-    ${FooterLinkColors}
-    text-decoration: none;
-    transition: color 0.3s;
+export const SocialMediaIcon = styled.img`
+    width: 30px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
 `;
