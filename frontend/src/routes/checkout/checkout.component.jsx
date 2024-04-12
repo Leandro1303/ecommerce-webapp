@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios"; 
+import { useNavigate } from 'react-router-dom';
 
 import CheckoutAddress from "../../components/checkout-address/checkout-address.component.jsx";
 import { selectCartItems, selectCartTotal } from "../../store/cart/cart.selector";
@@ -20,6 +21,7 @@ const Checkout = () => {
     const cartItems = useSelector(selectCartItems);
     const cartTotal = useSelector(selectCartTotal);
     const currentUser = useSelector(selectCurrentUser);
+    const navigate = useNavigate();
 
     const handlePayment = async () => {
         try {
@@ -36,6 +38,7 @@ const Checkout = () => {
                 createdAt: new Date() 
             });
             setPaymentSuccess(true);
+            navigate('/payment-success');
         } catch (error) {
             console.error("Error al procesar el pago:", error);
         }
