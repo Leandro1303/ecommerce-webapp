@@ -7,12 +7,14 @@ import { selectCurrentUser } from '../../store/user/user.selector';
 
 import { FormContainer } from './payment-form.styles';
 import { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import { useNavigate } from 'react-router-dom';
 
 import { PaymentButton, PaymentFormContainer } from './payment-form.styles';
 
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
   const amount = useSelector(selectCartTotal);
   const currentUser = useSelector(selectCurrentUser);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -40,11 +42,11 @@ const PaymentForm = () => {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: currentUser ? currentUser.displayName : 'Yihua Zhang',
+          name: currentUser ? currentUser.email : 'Guest User',
         },
       },
     });
-
+    console.log("Current User", currentUser, "Payment Result",paymentResult);
     setIsProcessingPayment(false);
 
     if (paymentResult.error) {
@@ -52,6 +54,7 @@ const PaymentForm = () => {
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
         alert('Payment Successful!');
+        navigate('/payment-success');
       }
     }
   };

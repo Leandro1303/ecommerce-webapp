@@ -35,8 +35,8 @@ router.get('/', auth, async (req, res) => {
 // Ruta para obtener todas las órdenes de un usuario
 router.get('/my-orders', auth, async (req, res) => {
   try {
-    await req.user.populate('orders').execPopulate();
-    res.json(req.user.orders);
+    await req.user.populate('order').execPopulate();
+    res.json(req.user.order);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

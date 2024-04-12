@@ -16,19 +16,22 @@ import PaymentSuccess from './routes/payment-success/payment-success.component'
 function App() {
 
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/" element={<Navigation />}>
-          <Route index element={<Home />} />
-          <Route path="/shop/*" element={<Shop />} />
-          <Route path='auth' element={<Authentication />} />
-          <Route path='checkout' element={<Checkout />} />
-          <Route path='/product/*' element={<Product />} />
-          <Route path="/profile/*" element={<Profile />} />
-          <Route path="/payment-success/*" element={<PaymentSuccess />} />
-        </Route>
-      </Routes>
-    </div>
+    <>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Navigation />}>
+            <Route index element={<Home />} />
+            <Route path="/shop/*" element={<Shop />} />
+            <Route path='auth' element={<Authentication />} />
+            <Route path='checkout' element={<Checkout />} />
+            <Route path='/product/*' element={<Product />} />
+            <Route path="/profile/*" element={<Profile />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+          </Route>
+        </Routes>
+      </div>
+      <Footer />
+    </>
   )
 }
 

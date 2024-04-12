@@ -78,7 +78,6 @@ export function* signOut() {
   try {
     yield call(signOutUSer);
     yield put(signOutSuccess());
-    localStorage.removeItem('token');
   } catch (error) {
     yield put(signOutFailed(error.message));
   }

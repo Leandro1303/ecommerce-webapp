@@ -7,22 +7,14 @@ const orderSchema = new mongoose.Schema({
         required: true
     },
     products: [{
-        name: {
-            type: String,
-            required: true
-        },
-        image: {
-            type: String,
-            required: true
-        },
-        quantity: {
-            type: Number,
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product',
             required: true
         },
     }],
     orderStatus: {
         type: String,
-        default: 'pending',
         required: true
     },
     total: {

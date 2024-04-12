@@ -91,11 +91,19 @@ export const createAuthUserWithEmailAndPassword = async (credentials) => {
   }
 };
 
-
 // Método para cerrar sesión de usuario en MongoDB
 export const signOutUSer = async () => {
   try {
-    await axios.post(`${baseURL}/users/logout`);
+    const token = localStorage.getItem('token');
+    await axios.post(
+      `${baseURL}/users/logout`,
+      null, // El cuerpo de la solicitud está vacío
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
   } catch (error) {
     console.error('Error al cerrar sesión de usuario:', error);
     throw error;
