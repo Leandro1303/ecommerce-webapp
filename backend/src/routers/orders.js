@@ -35,7 +35,7 @@ router.get('/', auth, async (req, res) => {
 // Ruta para obtener todas las órdenes de un usuario
 router.get('/my-orders', auth, async (req, res) => {
   try {
-      // Busca las órdenes asociadas al usuario en sesión
+  
       const orders = await Order.find({ user: req.user._id });
 
       res.status(200).json(orders);

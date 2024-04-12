@@ -13,6 +13,7 @@ const UserOrders = () => {
       } catch (error) {
         console.error(error);
       }
+      console.log(orders);
     };
 
     fetchOrders();
