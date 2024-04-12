@@ -61,12 +61,21 @@ const OrderList = () => {
         <p>Status: {order.orderStatus}</p>
         <p>Products:</p>
         <ul>
-          {order.products.map((product) => (
-            <li key={product._id}>{product.product}</li>
+          {order.products.map((productGroup, index) => (
+            <li key={index}>
+              {productGroup.product.map((product, innerIndex) => (
+                <div key={innerIndex}>
+                  <p>Name: {product.name}</p>
+                  <p>Image: {product.image}</p>
+                  <p>Quantity: {product.quantity}</p>
+                  <p>Price: ${product.price}</p>
+                </div>
+              ))}
+            </li>
           ))}
         </ul>
         <button
-          onClick={() => removeOrder(order._id)}
+          onClick={() => removeOrder(order._id.$oid)}
           className="remove-button"
         >
           Remove
@@ -84,3 +93,4 @@ const OrderList = () => {
 };
 
 export default OrderList;
+
