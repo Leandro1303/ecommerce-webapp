@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { useNavigate } from 'react-router-dom';
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
@@ -12,10 +12,13 @@ const defaultFormFields = {
     password: '',
 };
 
+
+
 const SignInForm = () => {
     const dispatch = useDispatch();
     const [ formFields, setFormFields ] = useState(defaultFormFields);
     const { email, password } = formFields;
+    const navigate = useNavigate();
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -27,6 +30,7 @@ const SignInForm = () => {
         try {
             dispatch(emailSignInStart(formFields));
             resetFormFields();
+            navigate('/');
         } catch (error) {
             switch(error.code) {
                 case 'auth/wrong-password':

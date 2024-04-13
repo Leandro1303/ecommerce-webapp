@@ -6,7 +6,7 @@ import CheckoutAddress from "../../components/checkout-address/checkout-address.
 import { selectCartItems, selectCartTotal } from "../../store/cart/cart.selector";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import PaymentFrom from "../../components/payment-form/payment-form.component.jsx";
-
+import { useNavigate } from "react-router-dom";
 
 import {
     CheckoutContainer,
@@ -21,6 +21,7 @@ const Checkout = () => {
     const cartItems = useSelector(selectCartItems);
     const cartTotal = useSelector(selectCartTotal);
     const currentUser = useSelector(selectCurrentUser);
+    const navigate = useNavigate();
 
     const handlePayment = async () => {
         try {
@@ -37,6 +38,7 @@ const Checkout = () => {
                 createdAt: new Date()
             });
             setPaymentSuccess(true);
+            navigate('/payment-success');
         } catch (error) {
             console.error("Error al procesar el pago:", error);
         }
