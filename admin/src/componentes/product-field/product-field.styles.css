@@ -1,12 +1,17 @@
 .list-product {
     width: 100%;
-    padding: 10px 50px;
+    padding: 10px 30px;
     margin: 30px;
     border-radius: 6px;
     background: white;
     overflow-y: auto;
     border-radius: 20px;
-    box-shadow: 0 0 10px gray; 
+    box-shadow: 0 0 10px gray;
+    overflow: hidden;
+    max-height: 650px;
+    display: flex;
+    flex-direction: column;
+}
 
 .listproduct-allproducts {
     max-height: 700px; 

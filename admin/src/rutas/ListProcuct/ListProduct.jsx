@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductField from "../../componentes/product-field/product-field.component"; // Importa el componente ProductList
 
