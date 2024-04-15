@@ -15,7 +15,6 @@ const Home = () => {
     return (
         <div>
             <Directory />
-            
             <ForYouSection />
             <Outlet />
         </div>

@@ -25,6 +25,7 @@ export const BackgroundImage = styled.div`
     background-size: cover;
     background-position: center;
     background-image: ${({ image_url }) => `url(${image_url})`};
+    transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 `;
 
 export const Body = styled.div`
@@ -84,7 +85,7 @@ export const DirectoryItemContainer = styled.div`
         
         ${BackgroundImage} {
             transform: scale(1.1);
-            transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+            transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95); 
         }
         
         ${Body} {
