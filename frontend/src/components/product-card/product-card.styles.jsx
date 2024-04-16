@@ -8,7 +8,7 @@ export const ProductCartContainer = styled(Link)`
   height: 350px;
   width: 222px;
   border-radius: 20px;
-  box-shadow: 0 0 10px gray;
+  box-shadow: var(--shadow);
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -20,6 +20,7 @@ export const ProductCartContainer = styled(Link)`
     object-fit: cover;
     margin-bottom: 5px;
     border-radius: 15px;
+    transition:var(--fast-transition);
   }
 
   button {
@@ -33,11 +34,13 @@ export const ProductCartContainer = styled(Link)`
   &:hover {
     img {
       opacity: 0.8;
+      transition:var(--fast-transition);
     }
 
     button {
       opacity: 0.85;
       display: flex;
+      transition:var(--fast-transition);
     }
   }
 `;
@@ -45,12 +48,13 @@ export const ProductCartContainer = styled(Link)`
 export const CardFooter = styled.div`
   width: 100%;
   height: 5%;
-  display: flex;
-  justify-content: space-between;
   font-size: 18px;
 `;
 
 export const Name = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: start;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -58,5 +62,5 @@ export const Name = styled.span`
 `;
 
 export const Price = styled.span`
-  font-weight: bold;
+  /* font-weight: bold; */
 `;

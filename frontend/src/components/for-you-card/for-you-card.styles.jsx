@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const ForYouCardContainer = styled(Link)`
 
 .card {
-  max-width: 50%;
+  max-width: 35%;
   margin: auto;
   transition: .2s;
   }
@@ -12,6 +12,7 @@ export const ForYouCardContainer = styled(Link)`
 .card-img {
   border-radius: 25px;
   object-fit: contain;
+  box-shadow: var(--shadow);
 }
 
 .card:hover {

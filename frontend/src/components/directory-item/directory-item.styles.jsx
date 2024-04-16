@@ -6,7 +6,7 @@ const PColor = css`
     }
     
     @media (prefers-color-scheme: light) {
-        color: #242424;
+        color: #353535;
     }
 `;
 const BodyColor = css`
@@ -40,6 +40,7 @@ export const Body = styled.div`
     ${BodyColor}
     opacity: 0.7;
     position: absolute;
+    transition: var(--fast-transition);
 
     h2 {
         font-weight: bold;
@@ -68,7 +69,7 @@ export const DirectoryItemContainer = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    box-shadow: 0 0 8px gray;
+    box-shadow: var(--shadow);
     margin: 0 7.5px 15px;
     overflow: hidden;
 
@@ -90,6 +91,7 @@ export const DirectoryItemContainer = styled.div`
         
         ${Body} {
             opacity: 0.9;
+            transition: var(--fast-transition);
         }
     }
 `;

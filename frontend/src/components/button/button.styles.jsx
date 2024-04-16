@@ -43,11 +43,11 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.2s;
+  transition: var(--fast-transition);
 
   &:hover {
     border: 1px solid black;
-    transition: 0.2s
+    transition: var(--fast-transition);
   }
 `;
 

@@ -1,8 +1,11 @@
 :root {
   margin: auto;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(255, 255, 255);
+  background-color: var(--bg-color);
+  --bg-color:#0C0C0C;
+  --shadow: rgba(0, 0, 0, 0.393) 3.15px 3.15px 3.5px;
+  --fast-transition: 0.2s;
 }
 
 a {
@@ -28,7 +31,7 @@ h1 {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #e4e5f1;
   }
   a:hover {
     color: #747bff;
@@ -41,5 +44,8 @@ h1 {
   }
   a:hover {
     color: grey;
+  }
+  p {
+    color: black;
   }
 }
