@@ -9,6 +9,7 @@ import { selectCurrentUser } from '../../store/user/user.selector.js';
 
 import './authentication.styles.css';
 import Spinner from '../../componentes/spinner/spinner.component.jsx';
+import Spinner from '../../componentes/spinner/spinner.component.jsx';
 
 const defaultUser = {
   email: '',
@@ -40,12 +41,14 @@ const Authentication = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       dispatch(emailSignInStart(credentials))
-      resetFormFields();
     } catch (error) {
       console.log(error.message);
     }
+    setIsLoading(false);
+    resetFormFields();
   }
 
   const handleChange = (e) => {

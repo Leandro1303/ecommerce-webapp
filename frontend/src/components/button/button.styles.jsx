@@ -34,7 +34,7 @@ export const BaseButton = styled.button`
   font-size: 15px;
   ${CartBackground}
   text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
+  font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   border: none;
   box-shadow: 0 0 2px gray;
@@ -43,9 +43,11 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: var(--fast-transition);
 
   &:hover {
     border: 1px solid black;
+    transition: var(--fast-transition);
   }
 `;
 

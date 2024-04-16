@@ -94,7 +94,7 @@ const Product = () => {
         <div className="row">
           <div className="pictures-container column1">
             <div className="picture-main-cont">
-              <img className="picture-main" src={data.image} alt="hat-image" />
+              <img className="picture-main" src={data.image} alt={data.name} />
             </div>
           </div>
           <div className="info-container column2">

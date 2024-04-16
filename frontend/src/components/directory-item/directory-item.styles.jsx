@@ -6,7 +6,7 @@ const PColor = css`
     }
     
     @media (prefers-color-scheme: light) {
-        color: #242424;
+        color: #353535;
     }
 `;
 const BodyColor = css`
@@ -25,6 +25,7 @@ export const BackgroundImage = styled.div`
     background-size: cover;
     background-position: center;
     background-image: ${({ image_url }) => `url(${image_url})`};
+    transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 `;
 
 export const Body = styled.div`
@@ -39,6 +40,7 @@ export const Body = styled.div`
     ${BodyColor}
     opacity: 0.7;
     position: absolute;
+    transition: var(--fast-transition);
 
     h2 {
         font-weight: bold;
@@ -67,7 +69,7 @@ export const DirectoryItemContainer = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    box-shadow: 0 0 8px gray;
+    box-shadow: var(--shadow);
     margin: 0 7.5px 15px;
     overflow: hidden;
 
@@ -84,11 +86,12 @@ export const DirectoryItemContainer = styled.div`
         
         ${BackgroundImage} {
             transform: scale(1.1);
-            transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+            transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95); 
         }
         
         ${Body} {
             opacity: 0.9;
+            transition: var(--fast-transition);
         }
     }
 `;

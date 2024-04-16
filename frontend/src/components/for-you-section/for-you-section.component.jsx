@@ -1,10 +1,10 @@
 import { Fragment } from "react";
-import './for-you-section.css';
-import ForYouCard from "../for-you-card/for-you-card.component";
 import { Carousel } from "react-responsive-carousel"
 import { selectCategoriesIsLoading, selectCategoriesMap } from "../../store/categories/category.selector";
-import Spinner from "../spinner/spinner.component";
 import { useSelector } from 'react-redux'
+import ForYouCard from "../for-you-card/for-you-card.component";
+import Spinner from "../spinner/spinner.component";
+import './for-you-section.css';
 
 const ForYouSection = () => {
 
@@ -12,7 +12,7 @@ const ForYouSection = () => {
   const isLoading = useSelector(selectCategoriesIsLoading);
   return (
     <div>
-      <h2 className="top-text">Recommended for you</h2>
+      <h1 className="top-text">Recommended for you</h1>
       <div className="card-container">
         <Carousel autoPlay infiniteLoop emulateTouch showThumbs={false} showStatus={false}>
           {isLoading ? (<Spinner />) : (

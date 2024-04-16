@@ -3,11 +3,11 @@ import Button from '../button/button.component';
 
 const CartBackground = css`
   @media (prefers-color-scheme: dark) {
-    background-color: #242424;
+    background-color: var(--bg-color);
   }
 
   @media (prefers-color-scheme: light) {
-    background-color: white;
+    background-color: #e4e5f1;
   }
 `
 
@@ -20,7 +20,7 @@ export const CartDropdownContainer = styled.div`
   padding: 20px;
   border-radius: 20px;
   ${CartBackground}
-  box-shadow: 0 0 15px 0 gray;
+  box-shadow: var(--shadow);
   top: 70px;
   right: 0;
   z-index: 5;
