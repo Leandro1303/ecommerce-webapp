@@ -23,7 +23,7 @@ const Checkout = () => {
     const currentUser = useSelector(selectCurrentUser);
     const navigate = useNavigate();
 
-    const handlePayment = async () => {
+    const makeOrder = async () => {
         try {
             if (!currentUser) {
                 console.error("Usuario no encontrado.");
@@ -69,7 +69,7 @@ const Checkout = () => {
             <Total>Total: ${cartTotal}</Total>
             <CheckoutAddress />
             <PaymentFrom />
-            <button onClick={handlePayment}>Simulate Successful Payment</button>
+            <button onClick={makeOrder}>Simulate Successful Payment</button>
         </CheckoutContainer>
     );
 }

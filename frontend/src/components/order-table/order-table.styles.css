@@ -21,6 +21,15 @@
     margin-top: -2rem;
   }
 
+  .order-total{
+    display: flex;
+    width: 93%;
+    justify-content: end;
+    padding: 0 30px;
+    margin: 0 30px;
+    
+  }
+
   table {
     width: 100%;
   }

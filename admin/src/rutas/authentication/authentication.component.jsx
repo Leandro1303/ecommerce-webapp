@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../store/user/user.selector.js';
 
 import './authentication.styles.css';
+import Spinner from '../../componentes/spinner/spinner.component.jsx';
 
 const defaultUser = {
   email: '',
@@ -18,6 +19,7 @@ const Authentication = () => {
   const dispatch = useDispatch();
   const [credentials, setCredentials] = useState(defaultUser);
   const { email, password } = credentials;
+  const [loading, setLoading] = useState(false);
 
   const currentUser = useSelector(selectCurrentUser)
   const navigate = useNavigate();
@@ -27,9 +29,9 @@ const Authentication = () => {
       navigate('/login', { replace: false });
       return;
     }
-    setTimeout(() => {
+      setTimeout  (() => null, 1500); 
       navigate('/', { replace: false });
-    }, 1000);
+      setLoading(false);
   }, [navigate, currentUser]);
 
   const resetFormFields = () => {
@@ -75,7 +77,7 @@ const Authentication = () => {
             label="Password"
             required
           />
-          <button type="submit" className="addproduct-btn">Login</button>
+          <button type="submit" className="addproduct-btn">{loading ? (<Spinner />) : "Login"}</button>
         </form>
       </div>
     </div>

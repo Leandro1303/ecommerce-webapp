@@ -31,8 +31,16 @@ const OrderList = () => {
     });
 
     if (result.isConfirmed) {
+      const token = localStorage.getItem("token");
       try {
-        await axios.delete(`http://localhost:5555/orders/${id}`);
+        await axios.delete(
+          `http://localhost:5555/orders/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         await fetchOrders();
         Swal.fire({
@@ -61,21 +69,19 @@ const OrderList = () => {
         <p>Status: {order.orderStatus}</p>
         <p>Products:</p>
         <ul>
-          {order.products.map((productGroup, index) => (
+          {order.products.map((product, index) => (
             <li key={index}>
-              {productGroup.product.map((product, innerIndex) => (
-                <div key={innerIndex}>
-                  <p>Name: {product.name}</p>
-                  <p>Image: {product.image}</p>
-                  <p>Quantity: {product.quantity}</p>
-                  <p>Price: ${product.price}</p>
-                </div>
-              ))}
+              <div>
+                <p>Name: {product.name}</p>
+                <p>Image: {product.image}</p>
+                <p>Quantity: {product.quantity}</p>
+                <p>Price: ${product.price}</p>
+              </div>
             </li>
           ))}
         </ul>
         <button
-          onClick={() => removeOrder(order._id.$oid)}
+          onClick={() => removeOrder(order._id)}
           className="remove-button"
         >
           Remove
@@ -93,4 +99,3 @@ const OrderList = () => {
 };
 
 export default OrderList;
-

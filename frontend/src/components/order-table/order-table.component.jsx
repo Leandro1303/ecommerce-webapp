@@ -27,9 +27,6 @@ return (
         Ship to <br />
         100ST 500W
       </p>
-      <p className="order-header-text">
-        Total <br />${order.total}
-      </p>
     </div>
     <table>
       <thead>
@@ -42,9 +39,8 @@ return (
         </tr>
       </thead>
       <tbody>
-        {order.products.map((productGroup) =>
-          productGroup.product.map((product) => (
-            <tr key={product._id.$oid}>
+        {order.products.map((product) => (
+            <tr key={product._id}>
               <td>
                 <img
                   src={product.image}
@@ -60,10 +56,14 @@ return (
                 ${product.price * product.quantity}
               </td>
             </tr>
+            
           ))
-        )}
+        }
       </tbody>
     </table>
+      <p className="order-total">
+        Total <br />${order.total}
+      </p>
   </div>
 );
 };

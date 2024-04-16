@@ -5,7 +5,7 @@ import auth from '../middleware/auth.js';
 const router = express.Router();
 
 // Ruta para crear un nuevo pedido
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
   const order = new Order({
     user: req.body.user,
     products: req.body.products,
@@ -23,7 +23,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Ruta para obtener todos los pedidos
-router.get('/', auth, async (req, res) => {
+router.get('/',  async (req, res) => {
   try {
     const orders = await Order.find().populate({ path: 'users', model: 'User', options: { strictPopulate: false } }).populate('products');
     res.json(orders);
