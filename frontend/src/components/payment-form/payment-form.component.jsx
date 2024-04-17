@@ -34,7 +34,7 @@ const PaymentForm = () => {
     }
   };
 
-  const clearItemsFromCart = () => dispatch(clearCart(cartItems));
+  const clearItemsFromCart = () => dispatch(clearCart());
 
   const paymentHandler = async (e) => {
     e.preventDefault();
