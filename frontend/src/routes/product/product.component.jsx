@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { addItemToCart } from "../../store/cart/cart.action";
@@ -11,42 +10,30 @@ import Button from "../../components/button/button.component";
 import "./product.styles.css";
 import { useEffect, useState } from "react";
 import Spinner from "../../components/spinner/spinner.component";
+import { fetchProductById } from "../../utils/MongoDB/mongo.utils";
 
 
 
 
 const Product = () => {
   const location = useLocation();
-
-
   const id = location.state.data._id;
-  // const [id, setId] = useState("");
-  console.log("Location state data id:     " + location.state.data._id);
-  
-  
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
-
-   
+  const product = data;
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   
-  // setState(() => ({ 
-  //   id: location.state.data._id
-  //   // console.log("setState    " + location.state.data._id);  
-  //   }))
-
   useEffect(() => {
-    fetchData();
-    // setId(location.state.data._id);
-    // console.log("useEffect setId #1    " + location.state.data._id);
-    // console.log("useEffect setId #2    " + location.state.data._id);
-
+    getProductDataById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const fetchData = async () => {
+  const getProductDataById = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5555/products/${id}`);
-      setData(response.data);
+      const response = await fetchProductById(id);
+      setData(response);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -54,16 +41,8 @@ const Product = () => {
     }
   };
 
-  const product = data;
-  const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
-
   const addToCart = () => {
     dispatch(addItemToCart(cartItems, product));
-
-    console.log("Click en Agregar al carrito" + "--cartItems--" + cartItems + "--product--" + product);
-    console.log(product);
-    console.log(cartItems);
   };
 
   if (loading && data === null) {
@@ -75,7 +54,7 @@ const Product = () => {
           <p className="banner-offer-text">
             {" "}
             <a href="./shop">
-              Free shipping on orders US$ 50+ 
+              Free shipping on orders US$ 50+
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               New Feature: Modify quantities in the cart!

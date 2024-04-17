@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store, persistor } from './store/store';
 import { stripePromise } from './utils/stripe/stripe.utils.js';
+import { StyleSheetManager } from 'styled-components';
 import App from './App.jsx'
 
 import './index.css'
@@ -14,11 +15,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <Elements stripe={stripePromise}>
-            <App />
-          </Elements>
-        </BrowserRouter>
+        <StyleSheetManager shouldForwardProp={(prop) => !['shrink', 'image_url'].includes(prop)}>
+          <BrowserRouter>
+            <Elements stripe={stripePromise}>
+              <App />
+            </Elements>
+          </BrowserRouter>
+        </StyleSheetManager>
       </PersistGate>
     </Provider>
   </React.StrictMode>

@@ -1,54 +1,44 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import OrderTable from "../../components/order-table/order-table.component";
 import Spinner from "../../components/spinner/spinner.component";
+import { fetchOrders } from "../../utils/MongoDB/mongo.utils";
 
 const UserOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      const token = localStorage.getItem("token");
+    const fetchMyOrders = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5555/orders/my-orders",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setOrders(response.data);
+        const response = await fetchOrders();
+        setOrders(response);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchOrders();
-    setTimeout (() => setLoading(false), 1500); 
+    fetchMyOrders();
+    setTimeout(() => setLoading(false), 1250);
   }, []);
 
-  if (orders.length === 0) {
-    return (
-      <>
-        <h2 className="my-orders">My Orders</h2>
-        <p>You have not placed any orders yet.</p>
-      </>
-    );
+  if (loading) {
+    return <Spinner />
   }
 
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : (
+      {orders.length != 0 ? (
         <div className="order-container">
           <h2 className="my-orders">My Orders</h2>
           {orders.map((order) => (
             <OrderTable key={order._id} order={order} />
           ))}
         </div>
+      ) : (
+        <>
+          <h2 className="my-orders">My Orders</h2>
+          <p>You have not placed any orders yet.</p>
+        </>
       )}
     </>
   );

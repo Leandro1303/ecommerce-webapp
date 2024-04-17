@@ -1,48 +1,29 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios";
 
+// COMPONENTS
 import CheckoutAddress from "../../components/checkout-address/checkout-address.component.jsx";
-import { selectCartItems, selectCartTotal } from "../../store/cart/cart.selector";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import PaymentFrom from "../../components/payment-form/payment-form.component.jsx";
-import { useNavigate } from "react-router-dom";
 
+// REDUX - SELECTORS
+import {
+    selectCartItems,
+    selectCartTotal
+} from "../../store/cart/cart.selector";
+import { selectCurrentUser } from "../../store/user/user.selector.js";
+
+// STYLES
 import {
     CheckoutContainer,
     CheckoutHeader,
     HeaderBlock,
     Total
 } from './checkout.styles'
-import { selectCurrentUser } from "../../store/user/user.selector.js";
 
 const Checkout = () => {
-    const [paymentSuccess, setPaymentSuccess] = useState(false);
     const cartItems = useSelector(selectCartItems);
     const cartTotal = useSelector(selectCartTotal);
     const currentUser = useSelector(selectCurrentUser);
-    const navigate = useNavigate();
-
-    const makeOrder = async () => {
-        try {
-            if (!currentUser) {
-                console.error("Usuario no encontrado.");
-                return;
-            }
-
-            await axios.post("http://localhost:5555/orders", {
-                user: currentUser._id,
-                products: cartItems.map(item => ({ product: item._id })),
-                orderStatus: "pending",
-                total: cartTotal,
-                createdAt: new Date()
-            });
-            setPaymentSuccess(true);
-            navigate('/payment-success');
-        } catch (error) {
-            console.error("Error al procesar el pago:", error);
-        }
-    };
 
     return (
         <CheckoutContainer>
@@ -68,15 +49,12 @@ const Checkout = () => {
             ))}
             <Total>Total: ${cartTotal}</Total>
             {currentUser ? (
-                <h3>Favor inicie seccion o registrese para completar la orden.</h3>
-            ) : (
                 <CheckoutAddress />
+            ) : (
+                <h3>Favor inicie seccion o registrese para completar la orden.</h3>
             )}
             {currentUser &&
                 <PaymentFrom />
-            }
-            {currentUser &&
-                <button onClick={handlePayment}>Simulate Successful Payment</button>
             }
         </CheckoutContainer>
     );

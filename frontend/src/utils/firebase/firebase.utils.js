@@ -62,7 +62,7 @@ export const addCollectionAndDocuments = async (
 }
 
 // MONGODB GET CATEGORIES AND DOCUMENTS
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocument = async () => {
   try {
     const response = await axios.get('http://localhost:5555/products');
     return response.data;
@@ -71,7 +71,6 @@ export const getCategoriesAndDocuments = async () => {
     throw error;
   }
 };
-
 
 export const createUserDocumentFromAuth = async (
   userAuth,

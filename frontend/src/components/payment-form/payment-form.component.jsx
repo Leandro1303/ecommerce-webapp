@@ -1,16 +1,20 @@
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
-import { selectCartTotal,selectCartItems } from "../../store/cart/cart.selector";
+import {
+  selectCartTotal,
+  selectCartItems
+} from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { clearCart } from "../../store/cart/cart.action";
 
 import { FormContainer } from "./payment-form.styles";
-import { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { useNavigate } from "react-router-dom";
 
-import { PaymentButton, PaymentFormContainer } from "./payment-form.styles";
+import { PaymentFormContainer } from "./payment-form.styles";
+import { createOrder } from "../../utils/MongoDB/mongo.utils";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -19,34 +23,18 @@ const PaymentForm = () => {
   const currentUser = useSelector(selectCurrentUser);
   const cartItems = useSelector(selectCartItems);
   const amount = useSelector(selectCartTotal);
+  const dispatch = useDispatch();
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   const makeOrder = async () => {
     try {
-      if (!currentUser) {
-        console.error("Usuario no encontrado.");
-        return;
-      }
-  
-      const productsData = cartItems.map(item => ({
-        name: item.name,
-        image: item.image,
-        quantity: item.quantity,
-        price: item.price
-      }));
-      console.log(productsData);
-      await axios.post("http://localhost:5555/orders", {
-        user: currentUser._id,
-        products: productsData,
-        orderStatus: "pending",
-        total: amount,
-        createdAt: new Date().toISOString(), // Convertir a cadena ISO 8601
-    });
+      await createOrder(currentUser, cartItems, amount);
     } catch (error) {
       console.error("Error al subir la orden:", error);
     }
   };
-  
+
+  const clearItemsFromCart = () => dispatch(clearCart(cartItems));
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -84,6 +72,7 @@ const PaymentForm = () => {
       if (paymentResult.paymentIntent.status === "succeeded") {
         alert("Payment Successful!");
         await makeOrder();
+        clearItemsFromCart();
         navigate("/payment-success");
       }
     }
@@ -93,13 +82,13 @@ const PaymentForm = () => {
     <PaymentFormContainer>
       <FormContainer onSubmit={paymentHandler}>
         <h2>Credit Card Payment:</h2>
-        <CardElement />
-        <PaymentButton
+        <CardElement hidePostalCode={true} />
+        <Button
           buttonType={BUTTON_TYPE_CLASSES.inverted}
           isLoading={isProcessingPayment}
         >
           Pay Now
-        </PaymentButton>
+        </Button>
       </FormContainer>
     </PaymentFormContainer>
   );

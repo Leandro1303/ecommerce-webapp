@@ -1,17 +1,13 @@
-import React from "react"
 import './checkout-address.css'
 
-
 const CheckoutAddress = () => {
-
   const address1 = "2040 St 500W";
   const address2 = "Apt 2030";
   const city = "Miami";
   const zipcode = "31031";
   const phone = "313-890-1234";
 
-
-  return(
+  return (
     <div>
       <h2 className="shipping-address">Shipping Address</h2>
       <div className="checkout-container">
