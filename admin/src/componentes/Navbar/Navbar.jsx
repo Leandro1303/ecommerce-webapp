@@ -1,6 +1,8 @@
 import "./Navbar.css";
 import shop from "../../assets/shop.svg";
-import profile from "../../assets/profile.svg";
+// import sun from "../../assets/sun-solid.svg";
+// import moon from "../../assets/moon-solid.svg";
+import logout from "../../assets/right-from-bracket-solid.svg";
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../utils/backend.js';
 
@@ -22,14 +24,17 @@ const Navbar = () => {
       <a href="/">
         <img src={shop} alt="nav-logo" className="nav-logo" />
       </a>
-      <span>Ecommerce admin panel</span>
+      <span className="title">E-Commerce Admin Panel</span>
+      <span>
+
       <img
-        src={profile}
-        className="nav-profile"
-        alt="profile-logo"
+        src={logout}
+        className="nav-logo"
+        alt="exit-logo"
         onClick={handleLogout}
         style={{ cursor: 'pointer' }}
       />
+      </span>
     </div>
   );
 };

@@ -33,14 +33,11 @@ const OrderList = () => {
     if (result.isConfirmed) {
       const token = localStorage.getItem("token");
       try {
-        await axios.delete(
-          `http://localhost:5555/orders/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await axios.delete(`http://localhost:5555/orders/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         await fetchOrders();
         Swal.fire({
@@ -63,19 +60,35 @@ const OrderList = () => {
   const renderOrders = () => {
     return orders.map((order) => (
       <div key={order._id} className="order-item">
-        <h3>Order ID: {order._id}</h3>
-        <p>User: {order.user}</p>
-        <p>Total: ${order.total}</p>
-        <p>Status: {order.orderStatus}</p>
-        <p>Products:</p>
+        <div className="order-header">
+          <p>Order ID: {order._id}</p>
+          <p>User: {order.user}</p>
+          <p>Total: $ {order.total}</p>
+          <p>Status: {order.orderStatus}</p>
+        </div>
+       
+
+        <ul>
+          <li>
+            <div className="products-head">
+              <p>Product</p>
+              <p>Image</p>
+              <p>Quantity</p>
+              <p>Price</p>
+            </div>
+          </li>
+        </ul>
+
         <ul>
           {order.products.map((product, index) => (
             <li key={index}>
-              <div>
-                <p>Name: {product.name}</p>
-                <p>Image: {product.image}</p>
-                <p>Quantity: {product.quantity}</p>
-                <p>Price: ${product.price}</p>
+              <div className="products-data">
+                <p>{product.name}</p>
+                <p>
+                  <img src={product.image} alt="" className="products-image"/>
+                </p>
+                <p>{product.quantity}</p>
+                <p>$ {product.price}</p>
               </div>
             </li>
           ))}

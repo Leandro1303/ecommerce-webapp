@@ -4,12 +4,14 @@ import { Routes, Route } from "react-router-dom";
 import AddProduct from "../../rutas/AddProduct/AddProduct";
 import ListProduct from "../../rutas/ListProcuct/ListProduct";
 import OrderList from "../../rutas/Orders/OrderList";
+import Graph from "../Graph/graph";
 
 const Admin = () => {
   return (
     <div className="admin">
       <Sidebar />
       <Routes>
+        <Route path="/" element={<Graph />} />
         <Route path="/addproduct" element={<AddProduct />} />
         <Route path="/listproduct" element={<ListProduct />} />
         <Route path="/orderlist" element={<OrderList />} />

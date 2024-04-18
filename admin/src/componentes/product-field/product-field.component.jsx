@@ -1,6 +1,6 @@
 import Proptypes from "prop-types";
-import cross_icon from "../../assets/cross_icon.png";
-import edit_icon from "../../assets/edit_icon.svg";
+import remove from "../../assets/trash-can-solid.svg";
+import edit_icon from "../../assets/pen-to-square-solid.svg";
 import { useModal } from "../../context/modal-provider.cotext";
 import Swal from "sweetalert2";
 import "./product-field.styles.css";
@@ -31,8 +31,8 @@ const ProductField = ({ allproducts, removeProduct }) => {
     <div className="list-product">
       <h1>All Products List</h1>
       <div className="listproduct-format-main">
-        <p>Products</p>
-        <p>Title</p>
+        <p>Image</p>
+        <p>Product</p>
         <p>Offer Price</p>
         <p>Price</p>
         <p>Quantity</p>
@@ -40,13 +40,13 @@ const ProductField = ({ allproducts, removeProduct }) => {
         <p>Remove</p>
         <p>Edit</p>
       </div>
-
+      <hr className="hr-product"/>
       <div className="listproduct-allproducts">
-        <hr />
+        
         {allproducts.map((product, index) => (
           <div
             key={index}
-            className="listproduct-format-main listproduct-format"
+            className="listproduct-format"
           >
             <img
               src={product.image}
@@ -54,25 +54,26 @@ const ProductField = ({ allproducts, removeProduct }) => {
               className="listproduct-product-icon"
             />
             <p>{product.name}</p>
-            <p>${product.price}</p>
-            <p>${product.old_price}</p>
+            <p>$ {product.price}</p>
+            <p>$ {product.old_price}</p>
             <p>{product.quantity}</p>
             <p>{product.category}</p>
             <img
               onClick={() => handleRemoveProduct(product._id)}
-              className="listproduct-remove-icon"
-              src={cross_icon}
+              className="listproduct-icon"
+              src={remove}
               alt="Remove"
-            />
+             />
             <img
               onClick={() => openModal(product)}
-              className="listproduct-remove-icon"
+              className="listproduct-icon"
               src={edit_icon}
               alt="Edit"
             />
           </div>
         ))}
-        <hr />
+        <br />
+        <hr className="hr-product"/>
       </div>
     </div>
   );

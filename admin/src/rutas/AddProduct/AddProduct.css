@@ -6,7 +6,7 @@
   padding: 30px 50px;
   margin: 20px 30px;
   border-radius: 6px;
-  background: #ffffff;
+  background: var(--color-background-card);
   border-radius: 20px;
   box-shadow: 0 0 10px gray;
 }
@@ -25,7 +25,7 @@
   padding-left: 15px;
   border: 1px solid #c3c3c3;
   outline: none;
-  color: #7b7b7b;
+  color: var(--color-info-dark);
   font-size: 14px;
 }
 
@@ -56,17 +56,17 @@
   width: 160px;
   height: 50px;
   border-radius: 6px;
-  background: #6079ff;
+  background: var(--color-success);
   border: none;
   cursor: pointer;
-  color: white;
+  color: var(--color-info-light);
   font-size: 16px;
   font-weight: 500;
 
 }
 
 .addproduct-btn:hover {
-  background: #6078ff7a;
+  filter: brightness(90%);
 }
 
 @media (max-width: 800px) {

@@ -10,7 +10,7 @@
 }
 .modal-container {
   display: flex;
-  background: white;
+  background: var(--color-background-card);
   align-items: center;
   justify-content: center;
   margin: auto;
@@ -21,13 +21,22 @@
 
 .cancel-btn {
   margin-top: 20px;
+  margin-left: 20px;
   width: 160px;
   height: 50px;
   border-radius: 6px;
-  background: #fd2f2f;
+  background: var(--color-danger);
   border: none;
   cursor: pointer;
-  color: white;
+  color: var(--color-info-light);
   font-size: 16px;
   font-weight: 500;
+}
+
+.cancel-btn:hover {
+  filter: brightness(90%);
+}
+
+.addproduct-itemfield {
+  color: var(--color-info-dark);
 }

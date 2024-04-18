@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--color-background-main);
 }
 
 .login-container {
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--color-background-card);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -22,7 +22,7 @@
   font-weight: 900;
   font-size: x-large;
   color: black;
-  text-shadow: 0 0 8px #6079ff;
+  text-shadow: 0 0 8px var(--color-primary);
 }
 
 .login-container form {

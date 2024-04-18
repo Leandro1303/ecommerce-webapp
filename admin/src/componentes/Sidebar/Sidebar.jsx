@@ -9,24 +9,24 @@ const Sidebar = () => {
     <div className="sidebar">
       <Link to={"/addproduct"} style={{ textDecoration: "none" }}>
         <div className="sidebar-item">
-          <img src={add_product_icon} alt="" />
-          <p>Add product</p>
+          <img src={add_product_icon} alt="" className="sidebar-icon" />
+          Add product
         </div>
       </Link>
       <Link to={"/listproduct"} style={{ textDecoration: "none" }}>
         <div className="sidebar-item">
-          <img src={product_list_icon} alt="" />
-          <p>Product List</p>
+          <img src={product_list_icon} alt="" className="sidebar-icon" />
+          Product List
         </div>
       </Link>
 
       <Link to={"/orderlist"} style={{ textDecoration: "none" }}>
         <div className="sidebar-item">
-          <img src={product_list_icon} alt="" />
-          <p>Order List</p>
+          <img src={product_list_icon} alt="" className="sidebar-icon" />
+          Order List
         </div>
       </Link>
-    </div>
+      </div>
   );
 };
 

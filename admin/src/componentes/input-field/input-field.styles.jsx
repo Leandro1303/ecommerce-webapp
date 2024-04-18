@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 const subColor = "grey";
-const mainColor = "black";
+const mainColor = "var(--color-info-dark)";
 
 /* const InputTextColors = css`
   @media (prefers-color-scheme: dark) {
@@ -46,7 +46,7 @@ const shrinkLabelStyles = css`
 
 export const FormInputLabel = styled.label`
   color: ${subColor};
-  background-color: white;
+  background-color: var(--color-background-card);
   font-size: 16px;
   font-weight: normal;
   position: absolute;

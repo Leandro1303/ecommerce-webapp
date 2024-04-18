@@ -1,49 +1,74 @@
 img {
-  height: 40px;
-}
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  padding-top: 30px;
-  width: 100%;
-  max-width: 250px;
-  height: 100vh;
-  background-color: #fff;
-  color: rgba(255, 255, 255, 0.87);
-  font-family:'Open Sans Condensed', sans-serif ;
-  border-radius: 20px;
-  box-shadow: 0 0 10px gray;
-  margin: 21px 0 0 15px;
-}
-
-.sidebar-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
-  margin: 6px 20px;
-  border-radius: 6px;
-  background-color: #fffefe;
-  box-shadow: 0 0 10px gray;
-  gap: 20px;
-  cursor: pointer;
-  user-select: none;
-  color: #242424;
-}
-
-@media (max-width: 768px) {
+    height: 40px;
+  }
+  
   .sidebar {
-    padding: 30px 0px;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
     width: 100%;
-    max-width: none;
-    height: auto;
-    justify-content: center;
-    gap: 10px;
+    max-width: 250px;
+    height: 80vh;    
+    color: var(--color-info-dark);
+    font-family:'Open Sans Condensed', sans-serif ;
+    border-radius: 20px;
+    box-shadow: 0 0 10px gray;
+    margin: 21px 0 0 15px;
+    background-color: var(--color-background-sidebar);
+    background-image: url('../../assets/trees-tall.png');
+    /* filter: blur(1px); */
+    /* filter: grayscale(1); */
+    /* filter:sepia(27%) hue-rotate(184deg) saturate(9); */
   }
-
+ 
   .sidebar-item {
-    margin: 0;
+    /* filter: grayscale(0.0); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    margin: 6px 20px;
+    border-radius: 6px;
+    background-color: var(--color-background-card);
+    color: var(--color-info-dark);
+    box-shadow: 0 0 10px gray;
+    gap: 20px;
+    cursor: pointer;
+    user-select: none;
+    height: 3.5rem;
   }
-}
+  
+  .sidebar-item span {
+    transition: all 300ms ease;
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      padding: 30px 0px;
+      flex-direction: row;
+      width: 100%;
+      max-width: none;
+      height: auto;
+      justify-content: center;
+      gap: 10px;
+    }
+  
+    .sidebar-item {
+      margin: 0;
+    }
+  }
+  
+  .sidebar-item:active{
+    background-color: var(--color-light);
+    color: var(--color-primary);
+    margin-left: 35px;
+  }
+    
+  .sidebar-item:hover {
+    background-color: var(--color-primary);
+    color: var(--color-info-light);
+  }
+  
+  .sidebar-item:hover .sidebar-icon {
+    filter: var(--color-info-light-filter);
+  }

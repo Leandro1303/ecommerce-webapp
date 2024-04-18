@@ -6,11 +6,13 @@
   padding: 10px 50px;
   margin: 30px;
   border-radius: 6px;
-  background: rgb(255, 255, 255);
-  max-height: 850px; 
+  background: var(--color-background-sidebar);
+  max-height: 850px;
   overflow-y: auto;
+  overflow-x: hidden;
   border-radius: 20px;
-  box-shadow: 0 0 10px gray; 
+  box-shadow: 0 0 10px gray;
+  height: 80vh;
 }
 
 .order-item {
@@ -18,17 +20,48 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 20px;
+  margin-top: 1rem;
   margin-bottom: 20px;
   border-radius: 20px;
   box-shadow: 0 0 10px gray;
+  background-color: var(--color-background-card);
 }
 
-.order-item h3 {
-  margin-bottom: 10px;
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  background-color: var(--color-primary);
+  color: var(--color-info-light);
 }
 
-.order-item p {
-  margin-bottom: 5px;
+hr{
+  border-top: 5px ridge var(--color-primary);
+  border-radius: 5px;
+  width: 96%;
+}
+
+.products-head{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  font-weight: 600;
+  align-items: center;
+}
+
+
+.products-data{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.products-image{
+  width: 40px;
+  height: fit-content;
 }
 
 .order-item ul {
@@ -38,18 +71,24 @@
 
 .order-item ul li {
   margin-left: 20px;
+  margin-bottom: -10px;
 }
+
 .remove-button {
   margin-top: 20px;
   width: 160px;
   height: 50px;
   border-radius: 6px;
-  background: #fc2424;
+  background: var(--color-danger);
   border: none;
   cursor: pointer;
-  color: white;
+  color: var(--color-info-light);
   font-size: 16px;
   font-weight: 500;
+}
+
+.remove-button:hover{
+  filter: brightness(90%);
 }
 
 @media (max-width: 800px) {

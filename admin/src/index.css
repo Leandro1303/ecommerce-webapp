@@ -1,10 +1,27 @@
+:root {
+  --color-background-main: #c8c8c7;
+  --color-background-sidebar: #e1e1e0;
+  --color-background-card: #fbfaf9;
+  --color-primary: #14213d;
+  --color-info-dark: #000000;
+  --color-info-light: #ffffff;
+
+  --color-success: #22bb33;
+  --color-danger: #bb2124;
+  --color-warning: #f0ad4e;
+
+
+  --color-info-dark-filter: invert(0%) sepia(6%) saturate(37%) hue-rotate(138deg) brightness(94%) contrast(100%);
+  --color-info-light-filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(287deg) brightness(103%) contrast(104%);
+}
+
 body {
   margin: 0;
   font-family: Lato, sans-serif;
-  background-color: gray;
-  height: 100vh;
+  background-color: var(--color-background-main);
+  height: 90vh;
 }
 
 #root {
-  height: 100vh;
+  height: 90vh;
 }

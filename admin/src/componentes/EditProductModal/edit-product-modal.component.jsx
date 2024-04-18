@@ -72,14 +72,14 @@ const EditProductModal = () => {
           />
           <div className="addproduct-price">
             <InputField
-              label='Price'
+              label='Offer price'
               value={productDetails.price || ''}
               onChange={handleChange}
               name='price'
               required
             />
             <InputField
-              label='Offer price'
+              label='Price'
               value={productDetails.old_price || ''}
               onChange={handleChange}
               name='old_price'

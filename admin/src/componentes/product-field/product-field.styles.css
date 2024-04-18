@@ -1,9 +1,9 @@
 .list-product {
     width: 100%;
     padding: 10px 30px;
+    padding-bottom: 30px;
     margin: 30px;
     border-radius: 6px;
-    background: white;
     overflow-y: auto;
     border-radius: 20px;
     box-shadow: 0 0 10px gray;
@@ -11,36 +11,69 @@
     max-height: 650px;
     display: flex;
     flex-direction: column;
+    background-color: var(--color-background-card);
 }
 
 .listproduct-allproducts {
     max-height: 700px; 
     overflow-y: auto; 
+    max-width: 1600px;
+
+}
+
+.hr-product{
+    border-top: 5px ridge var(--color-primary);
+    border-radius: 5px;
+    width: 85%;
+    margin: 0 0rem 1rem 2.8rem;
 }
 
 .listproduct-format-main {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
     width: 100%;
     padding: 20px 0px;
-    color: #454545;
+    color: var(--color-info-dark);
     font-weight: 600;
+    margin-left: 3rem;
+    max-width: 1400px;
 }
 
 .listproduct-format {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 25px;
+    width: 100%;
+    padding: 20px 3rem;
+    color: var(--color-info-dark);
+    margin-right: auto;
     align-items: center;
     font-weight: 500;
+    transition: 200ms;
+    overflow: hidden;
+    border-radius: 20px;
+    max-width: 1400px;
 }
+
+.listproduct-format:hover {
+    background-color: var(--color-primary);
+    color: var(--color-info-light);
+    transition: 200ms;
+    }
 
 .listproduct-product-icon {
-    height: 80px;
+    height: 70px;
 }
 
-.listproduct-remove-icon {
+.listproduct-icon {
+    filter: var(--color-info-dark-filter);
     cursor: pointer;
-    margin: auto;
-    height: 17px;
+    height: 20px;
+}
+
+.listproduct-format:hover .listproduct-icon {
+    filter: var(--color-info-light-filter);
 }
 
 @media (max-width: 800px) {
@@ -54,7 +87,7 @@
 
     .listproduct-format-main {
         padding: 15px 0px;
-        color: #454545;
+        color: var(--color-info-dark);
         font-size: 12px;
     }
 
