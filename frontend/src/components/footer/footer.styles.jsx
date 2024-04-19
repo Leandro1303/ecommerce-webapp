@@ -2,12 +2,12 @@ import styled, { css } from 'styled-components';
 
 const FooterContainerColors = css`
     @media (prefers-color-scheme: dark) {
-        background-color: black;
+        background: var(--color-gradient-dark);
         color: #f8f9fa;
     }
 
     @media (prefers-color-scheme: light) {
-        background-color: #f8f9fa;
+      background: var(--color-gradient);
         color: #343a40;
     }
 `;

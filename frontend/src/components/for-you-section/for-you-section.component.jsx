@@ -14,7 +14,7 @@ const ForYouSection = () => {
     <div>
       <h1 className="top-text">Recommended for you</h1>
       <div className="card-container">
-        <Carousel autoPlay infiniteLoop emulateTouch showThumbs={false} showStatus={false}>
+        <Carousel autoPlay infiniteLoop emulateTouch showIndicators={false} showThumbs={false} showStatus={false}>
           {isLoading ? (<Spinner />) : (
             Object.keys(categoriesMap).map((category, index) => {
               const products = categoriesMap[category];

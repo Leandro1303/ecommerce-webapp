@@ -3,11 +3,11 @@ import Button from '../button/button.component';
 
 const CartBackground = css`
   @media (prefers-color-scheme: dark) {
-    background-color: var(--bg-color);
+    background: var(--color-gradient-dark) ;
   }
 
   @media (prefers-color-scheme: light) {
-    background-color: #e4e5f1;
+    background: var(--color-gradient);
   }
 `
 

@@ -29,7 +29,7 @@ const UserOrders = () => {
     <>
       {orders.length != 0 ? (
         <div className="order-container">
-          <h2 className="my-orders">My Orders</h2>
+          <h1 className="my-orders">My Orders</h1>
           {orders.map((order) => (
             <OrderTable key={order._id} order={order} />
           ))}

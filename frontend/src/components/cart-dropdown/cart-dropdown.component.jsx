@@ -14,6 +14,7 @@ import {
   CartItems
 } from './cart-dropdown.styles';
 import { setIsCartOpen } from '../../store/cart/cart.action';
+import { Link } from 'react-router-dom';
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,10 @@ const CartDropdown = () => {
           cartItems.map((cartItem) => (
             <CartItem key={cartItem._id} cartItem={cartItem} />
           ))
-        ) : (
-          <EmptyMessage>Your cart is empty</EmptyMessage>
-        )}
+        ) : (<div>
+              <EmptyMessage>Your cart is empty</EmptyMessage> <br/>
+              <Link to={'/shop'}>Start shopping</Link>
+            </div>)}
       </CartItems>
       <Button buttonType="base" onClick={goToCheckoutHandler}>GO TO CHECKOUT</Button>
     </CartDropdownContainer>

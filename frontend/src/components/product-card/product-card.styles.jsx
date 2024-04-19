@@ -14,6 +14,14 @@ export const ProductCartContainer = styled(Link)`
   overflow: hidden;
   padding: 10px 10px 20px 10px;
 
+  @media (prefers-color-scheme: dark) {
+    background: var(--color-gradient-dark) ;
+  }
+
+  @media (prefers-color-scheme: light) {
+    background: var(--color-gradient) ;
+  }
+
   img {
     width: 100%;
     height: 95%;

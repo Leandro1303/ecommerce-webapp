@@ -3,11 +3,11 @@ import Button from '../button/button.component';
 
 const UserBackground = css`
   @media (prefers-color-scheme: dark) {
-    background-color: var(--bg-color);
+    background: var(--color-gradient-dark);
   }
 
   @media (prefers-color-scheme: light) {
-    background-color: #e4e5f1;
+    background: var(--color-gradient);
   }
 `;
 
@@ -24,6 +24,7 @@ export const UserDropdownContainer = styled.div`
   top: 70px;
   right: 0;
   z-index: 5;
+  transition: 0.5s;
 
   ${Button} {
     margin-top: auto;
@@ -41,6 +42,7 @@ export const UserItems = styled.div`
   flex-direction: column;
   overflow: scroll;
   margin-bottom: 10px;
+  /* color: var(--color-text-black); */
   
   &::-webkit-scrollbar {
     display: none;

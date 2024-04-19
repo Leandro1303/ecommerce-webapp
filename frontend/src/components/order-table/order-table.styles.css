@@ -11,7 +11,14 @@
     font-size: small;
     padding: 0 1.5rem;
     border-radius: 12px;
-    background-color: rgb(139, 139, 139);
+    background-color: var(--color-primary);
+  }
+
+  @media(prefers-color-scheme: light)
+  {
+    .order-header-text {
+      color: var(--color-text-white);
+    }
   }
 
   .order-footer{
@@ -39,3 +46,6 @@
     padding-bottom: 1rem;
   }
 
+  img {
+    border-radius: 7px;
+  }
