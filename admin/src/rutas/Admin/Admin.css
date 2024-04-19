@@ -11,6 +11,7 @@ body {
 
   .admin{
     display: flex;
+    height: 90vh;
   }
 
   @media (max-width: 800px) {

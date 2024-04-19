@@ -4,9 +4,10 @@ import edit_icon from "../../assets/pen-to-square-solid.svg";
 import { useModal } from "../../context/modal-provider.cotext";
 import Swal from "sweetalert2";
 import "./product-field.styles.css";
+import Spinner from "../spinner/spinner.component";
 
-const ProductField = ({ allproducts, removeProduct }) => {
-  const { openModal } = useModal(); 
+const ProductField = ({ allproducts, loading, removeProduct }) => {
+  const { openModal } = useModal();
 
   const handleRemoveProduct = (productId) => {
     Swal.fire({
@@ -30,57 +31,47 @@ const ProductField = ({ allproducts, removeProduct }) => {
   return (
     <div className="list-product">
       <h1>All Products List</h1>
-      <div className="listproduct-format-main">
-        <p>Image</p>
-        <p>Product</p>
-        <p>Offer Price</p>
-        <p>Price</p>
-        <p>Quantity</p>
-        <p>Category</p>
-        <p>Remove</p>
-        <p>Edit</p>
-      </div>
-      <hr className="hr-product"/>
-      <div className="listproduct-allproducts">
-        
-        {allproducts.map((product, index) => (
-          <div
-            key={index}
-            className="listproduct-format"
-          >
-            <img
-              src={product.image}
-              alt=""
-              className="listproduct-product-icon"
-            />
-            <p>{product.name}</p>
-            <p>$ {product.price}</p>
-            <p>$ {product.old_price}</p>
-            <p>{product.quantity}</p>
-            <p>{product.category}</p>
-            <img
-              onClick={() => handleRemoveProduct(product._id)}
-              className="listproduct-icon"
-              src={remove}
-              alt="Remove"
-             />
-            <img
-              onClick={() => openModal(product)}
-              className="listproduct-icon"
-              src={edit_icon}
-              alt="Edit"
-            />
-          </div>
-        ))}
-        <br />
-        <hr className="hr-product"/>
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="table-container">
+          <table className="listproduct-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Offer Price</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Remove</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allproducts.map((product, index) => (
+                <tr key={index}>
+                  <td><img src={product.image} alt="" className="listproduct-product-icon" /></td>
+                  <td>{product.name}</td>
+                  <td>$ {product.price}</td>
+                  <td>$ {product.old_price}</td>
+                  <td>{product.quantity}</td>
+                  <td>{product.category}</td>
+                  <td><img onClick={() => handleRemoveProduct(product._id)} className="listproduct-icon" src={remove} alt="Remove" /></td>
+                  <td><img onClick={() => openModal(product)} className="listproduct-icon" src={edit_icon} alt="Edit" /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
 
 ProductField.propTypes = {
   allproducts: Proptypes.array.isRequired,
+  loading: Proptypes.bool.isRequired,
   removeProduct: Proptypes.func.isRequired,
 };
 

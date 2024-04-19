@@ -3,6 +3,7 @@ import axios from 'axios';
 // URL base de la API para acceder a los endpoints relacionados con la base de datos MongoDB
 const baseURL = 'http://localhost:5555';
 export const bakendURL = "https://ecommerce-webapp-backend.onrender.com"
+const token = localStorage.getItem("token");
 
 export const loginUser = async (credentials) => {
   if (!credentials) return;
@@ -109,3 +110,77 @@ export const signOutUSer = async () => {
     throw error;
   }
 };
+
+export const getProducts = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/products`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+    throw error;
+  }
+};
+
+export const addProduct = async (productDetails) => {
+  try {
+    const response = await axios.post(`${baseURL}/products`, productDetails);
+    return response.data;
+  } catch (error) {
+    console.error('Error al agregar producto:', error);
+    throw error;
+  }
+};
+
+export const updateProduct = async (id, productDetails) => {
+  try {
+    const response = await axios.put(
+      `${baseURL}/products/${id}`,
+      productDetails
+    );
+    
+    return response.data;
+  } catch (error) {
+    console.error('Error al actualizar producto:', error);
+    throw error;
+  }
+};
+
+export const deleteProduct = async (id) => {
+  try {
+    const response = await axios.delete(`${baseURL}/products/${id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      data: { id: id },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error al eliminar producto:', error);
+    throw error;
+  }
+};
+
+export const getOrders = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/orders`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener pedidos:', error);
+    throw error;
+  }
+};
+
+export const deleteOrder = async (id) => {
+  try {
+    const response = await axios.delete(`${baseURL}/orders/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error al eliminar pedido:', error);
+    throw error;
+  }
+}

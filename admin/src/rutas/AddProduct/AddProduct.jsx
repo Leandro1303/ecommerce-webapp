@@ -1,9 +1,12 @@
-import "./AddProduct.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import InputField from "../../componentes/input-field/input-field.component";
+
+import { addProduct } from "../../utils/MongoDB/MongoDB.utils";
 import { uploadImageToFirebase } from "../../utils/firebase";
-// import { bakendURL } from '../../backend';
+
+import InputField from "../../componentes/input-field/input-field.component";
+
+import Button, { BUTTON_TYPE_CLASSES } from "../../componentes/button/button.component";
+import "./AddProduct.css";
 
 const defaultProduct = {
   category: "Hats",
@@ -27,8 +30,7 @@ const AddProduct = () => {
   const [imagePath, setImagePath] = useState(null);
   const [loading, setLoading] = useState(false);
   const [productDetails, setProductDetails] = useState(defaultProduct);
-  const { name, description, quantity, price, old_price, image } =
-    productDetails;
+  const { name, description, quantity, price, old_price, image } = productDetails;
 
   useEffect(() => {
     if (image) {
@@ -36,6 +38,10 @@ const AddProduct = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
+
+  const resetForm = () => {
+    setProductDetails(defaultProduct);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,20 +82,12 @@ const AddProduct = () => {
 
   const handleSubmit = async () => {
     try {
-      console.log("Product details:", productDetails);
-      const response = await axios.post(
-        "http://localhost:5555/products",
-        productDetails
-      );
-
-      if (!response.data) {
-        throw new Error("Error al agregar el producto");
-      }
-      setLoading(false);
+      await addProduct(productDetails); 
     } catch (error) {
       console.error("Error al agregar el producto:", error);
-      setLoading(false);
     }
+    resetForm();
+    setLoading(false);
   };
 
   const submitProduct = async (e) => {
@@ -167,9 +165,9 @@ const AddProduct = () => {
           accept="jpg, jpeg, png"
           hidden
         />
-        <button type="submit" className="addproduct-btn" disabled={loading}>
+        <Button type="submit" isLoading={loading} buttonType={BUTTON_TYPE_CLASSES.green}>
           Add Product
-        </button>
+        </Button>
       </form>
     </div>
   );

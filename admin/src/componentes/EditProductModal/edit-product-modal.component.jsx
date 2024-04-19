@@ -1,8 +1,12 @@
-import { useModal } from "../../context/modal-provider.cotext";
-import './edit-product-modal.styles.css'
-import InputField from "../input-field/input-field.component";
 import { useState, useEffect } from "react";
-import axios from 'axios';
+
+import { useModal } from "../../context/modal-provider.cotext";
+import { updateProduct } from "../../utils/MongoDB/MongoDB.utils";
+
+import InputField from "../input-field/input-field.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+
+import './edit-product-modal.styles.css'
 
 const categories = [
   { id: 'Hats', name: 'Hats' },
@@ -37,21 +41,20 @@ const EditProductModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      setLoading(true);
-      const response = await axios.put(`http://localhost:5555/products/${modalData._id}`, productDetails);
+      const response = await updateProduct(modalData._id, productDetails);
 
       if (!response.data) {
         throw new Error('Error updating the product');
       }
 
       closeModal();
-      
+
     } catch (error) {
       console.error('Error updating the product:', error);
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const handleCancel = () => {
@@ -72,26 +75,30 @@ const EditProductModal = () => {
           />
           <div className="addproduct-price">
             <InputField
-              label='Offer price'
-              value={productDetails.price || ''}
+              label="Offer price"
+              type="number"
+              value={`${productDetails.price}`} // Convertir a string temporalmente para mostrar en el campo
               onChange={handleChange}
-              name='price'
+              name="price"
               required
             />
             <InputField
-              label='Price'
-              value={productDetails.old_price || ''}
+              label="Price"
+              type="number"
+              value={`${productDetails.old_price}`} // Convertir a string temporalmente para mostrar en el campo
               onChange={handleChange}
-              name='old_price'
+              name="old_price"
               required
             />
             <InputField
-              label='Quantity'
-              value={productDetails.quantity || ''}
+              label="Quantity"
+              type="number"
+              value={`${productDetails.quantity}`} // Convertir a string temporalmente para mostrar en el campo
               onChange={handleChange}
-              name='quantity'
+              name="quantity"
               required
             />
+
           </div>
           <div className="addproduct-itemfield">
             <p>Description</p>
@@ -116,20 +123,20 @@ const EditProductModal = () => {
             </select>
           </div>
           <div className="button-container">
-            <button
+            <Button
               type="submit"
-              className='addproduct-btn'
-              disabled={loading}
+              buttonType={BUTTON_TYPE_CLASSES.green}
+              isLoading={loading}
             >
-              {loading ? 'Updating...' : 'Update Product'}
-            </button>
-            <button
+              Update Product
+            </Button>
+            <Button
               type="button"
-              className='cancel-btn'
+              buttonType={BUTTON_TYPE_CLASSES.red}
               onClick={handleCancel}
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </div>

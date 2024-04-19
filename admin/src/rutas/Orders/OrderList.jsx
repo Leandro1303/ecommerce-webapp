@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
+
+import { deleteOrder, getOrders } from "../../utils/MongoDB/MongoDB.utils";
+
+import Spinner from "../../componentes/spinner/spinner.component";
+
 import "./OrderList.css";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
+  const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect(() => {
     fetchOrders();
@@ -12,11 +17,12 @@ const OrderList = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:5555/orders");
-      setOrders(response.data);
+      const response = await getOrders();
+      setOrders(response);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
+    setIsLoading(false);
   };
 
   const removeOrder = async (id) => {
@@ -31,13 +37,8 @@ const OrderList = () => {
     });
 
     if (result.isConfirmed) {
-      const token = localStorage.getItem("token");
       try {
-        await axios.delete(`http://localhost:5555/orders/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        await deleteOrder(id);
 
         await fetchOrders();
         Swal.fire({
@@ -67,7 +68,6 @@ const OrderList = () => {
           <p>Status: {order.orderStatus}</p>
         </div>
        
-
         <ul>
           <li>
             <div className="products-head">
@@ -106,7 +106,13 @@ const OrderList = () => {
   return (
     <div className="order-list">
       <h2>Order List</h2>
-      {orders.length === 0 ? <p>No orders available</p> : renderOrders()}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          {orders.length === 0 ? <p>No orders available</p> : renderOrders()}
+        </>
+      )}
     </div>
   );
 };

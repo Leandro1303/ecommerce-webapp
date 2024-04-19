@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+
+import {
+  deleteProduct,
+  getProducts,
+} from "../../utils/MongoDB/MongoDB.utils";
+
 import ProductField from "../../componentes/product-field/product-field.component"; // Importa el componente ProductList
 
 const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
+  const [ isLoading, setIsLoading ] = useState(true);
 
   const fetchInfo = async () => {
+    setIsLoading(true);
     try {
-      const response = await axios.get("http://localhost:5555/products");
-      setAllProducts(response.data);
+      const response = await getProducts();
+      setAllProducts(response);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -19,22 +27,18 @@ const ListProduct = () => {
   }, []);
 
   const remove_product = async (id) => {
+    setIsLoading(true);
     try {
-      await axios.delete(`http://localhost:5555/products/${id}`, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        data: { id: id },
-      });
+      await deleteProduct(id);
       await fetchInfo();
     } catch (error) {
       console.error("Error removing product:", error);
     }
+    setIsLoading(false);
   };
 
   return (
-    <ProductField allproducts={allproducts} removeProduct={remove_product} />
+    <ProductField allproducts={allproducts} loading={isLoading} removeProduct={remove_product} />
   );
 };
 

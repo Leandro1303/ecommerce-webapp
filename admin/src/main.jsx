@@ -12,6 +12,7 @@ import ErrorPage from "./rutas/error/error.component.jsx";
 import { Provider } from 'react-redux'
 import { store, persistor } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { StyleSheetManager } from "styled-components";
 
 const router = createBrowserRouter([
   {
@@ -34,9 +35,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ModalProvider>
-          <RouterProvider router={router} />
-        </ModalProvider>
+        <StyleSheetManager shouldForwardProp={(prop) => prop !== 'shrink'}>
+          <ModalProvider>
+            <RouterProvider router={router} />
+          </ModalProvider>
+        </StyleSheetManager>
       </PersistGate>
     </Provider>
   </React.StrictMode>

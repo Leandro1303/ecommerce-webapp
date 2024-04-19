@@ -37,13 +37,13 @@
   color: var(--color-info-light);
 }
 
-hr{
+hr {
   border-top: 5px ridge var(--color-primary);
   border-radius: 5px;
   width: 96%;
 }
 
-.products-head{
+.products-head {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -52,14 +52,14 @@ hr{
 }
 
 
-.products-data{
+.products-data {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
 }
 
-.products-image{
+.products-image {
   width: 40px;
   height: fit-content;
 }
@@ -87,7 +87,7 @@ hr{
   font-weight: 500;
 }
 
-.remove-button:hover{
+.remove-button:hover {
   filter: brightness(90%);
 }
 
