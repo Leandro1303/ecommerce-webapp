@@ -12,7 +12,7 @@
   
   .nav-logo {
     width: 40px;
-    filter: var(--color-info-dark-filter);
+    filter: var(--color-primary-filter);
   }
 
   .title {

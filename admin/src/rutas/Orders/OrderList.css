@@ -1,3 +1,7 @@
+.title{
+  color: var(--color-primary);
+}
+
 .order-list {
   display: flex;
   flex-direction: column;
@@ -57,11 +61,13 @@ hr {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
+  height: 50px;
+  padding: 3px;
 }
 
 .products-image {
+  height: 40px;
   width: 40px;
-  height: fit-content;
 }
 
 .order-item ul {
@@ -96,4 +102,11 @@ hr {
     padding: 10px 30px;
     margin: 20px auto;
   }
+}
+
+.swal2-actions .swal2-confirm {
+  background-color: var(--color-danger) !important;
+  color: var(--color-info-light) !important;
+  border: none !important;
+  box-shadow: none !important;
 }

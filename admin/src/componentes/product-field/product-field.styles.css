@@ -13,8 +13,17 @@
     background-color: var(--color-background-card);
 }
 
-tbody tr:hover {
-    background-color: #f5f5f5;
+.title{
+    color: var(--color-primary);
+}
+
+tbody tr:hover td{
+    background-color: var(--color-primary);
+    color: var(--color-info-light);
+}
+
+tbody tr:hover .listproduct-icon{
+    filter: var(--color-info-light-filter);
 }
 
 .table-container {
@@ -40,7 +49,7 @@ tbody tr:hover {
 
 .listproduct-table th {
     text-align: left;
-    background-color: var(--color-info-dark);
+    background-color: var(--color-primary);
     color: var(--color-info-light);
     text-align: center;
 }

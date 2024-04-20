@@ -40,3 +40,13 @@
 .addproduct-itemfield {
   color: var(--color-info-dark);
 }
+
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+
+.button-container Button{
+  margin: 10px 20px;
+  width: 200px;
+}

@@ -105,7 +105,7 @@ const OrderList = () => {
 
   return (
     <div className="order-list">
-      <h2>Order List</h2>
+      <h2 className="title">Order List</h2>
       {isLoading ? (
         <Spinner />
       ) : (

@@ -30,7 +30,7 @@ const ProductField = ({ allproducts, loading, removeProduct }) => {
 
   return (
     <div className="list-product">
-      <h1>All Products List</h1>
+      <h1 className="title">All Products List</h1>
       {loading ? (
         <Spinner />
       ) : (
