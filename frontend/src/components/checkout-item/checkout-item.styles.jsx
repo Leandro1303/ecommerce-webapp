@@ -30,6 +30,12 @@ export const Quantity = styled(BaseSpan)`
 
 export const Arrow = styled.div`
     cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    &:active {
+      color: gray
+    }
 `;
 
 export const Value = styled.span`
@@ -39,4 +45,7 @@ export const Value = styled.span`
 export const RemoveButton = styled.div`
     padding-left: 12px;
     cursor: pointer;
+    &:active {
+      color: gray
+    }
 `;

@@ -1,3 +1,5 @@
+import Swal from "sweetalert2"
+
 import PropTypes from 'prop-types';
 
 import { useSelector, useDispatch } from "react-redux";
@@ -20,9 +22,30 @@ const CheckoutItem = ({ cartItem }) => {
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
-  const clearItemHanfler = () => dispatch(clearItemFromCart(cartItems, cartItem));
+  const clearItemHandler = () => dispatch(clearItemFromCart(cartItems, cartItem));
   const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
   const removeItemHandler = () => dispatch(removeItemFromCart(cartItems, cartItem));
+
+  function clearItemConfirm(){
+    Swal.fire({
+      title: `Are you sure you want to remove ${name}?`,
+      text: "You can add it again later.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Remove"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearItemHandler()
+        Swal.fire({
+          title: "Removed!",
+          text: "Product removed from cart.",
+          icon: "success"
+        });
+      }
+    });
+  }
 
   return (
     <CheckoutItemContainer>
@@ -36,7 +59,7 @@ const CheckoutItem = ({ cartItem }) => {
         <Arrow onClick={addItemHandler}>&#10095;</Arrow>
       </Quantity>
       <BaseSpan>${price} </BaseSpan>
-      <RemoveButton onClick={clearItemHanfler}>&#10005;</RemoveButton>
+      <RemoveButton onClick={clearItemConfirm}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   )
 }
