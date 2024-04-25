@@ -2,14 +2,15 @@ import axios from 'axios';
 
 // URL base de la API para acceder a los endpoints relacionados con la base de datos MongoDB
 const baseURL = 'http://localhost:5555';
-export const bakendURL = "https://ecommerce-webapp-backend.onrender.com"
+export const backendURL = import.meta.env.VITE_BACKEND_URL;
 const token = localStorage.getItem("token");
 
+// USER CRUD
 export const loginUser = async (credentials) => {
   if (!credentials) return;
 
   try {
-    const response = await axios.post("http://localhost:5555/users/login", credentials);
+    const response = await axios.post(`${baseURL}/users/login`, credentials);
     localStorage.setItem('token', response.data.token);
     return response.data.token;
   } catch (error) {
@@ -34,12 +35,14 @@ export const signInWithEmailAndPassword = async (credentials) => {
 // Método para obtener el usuario actual en MongoDB
 export const getCurrentUser = async () => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get(`${baseURL}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`
+    const response = await axios.get(
+      `${baseURL}/users/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
-    });
+    );
     return response.data;
   } catch (error) {
     console.error('Error al obtener el usuario actual:', error);
@@ -47,13 +50,19 @@ export const getCurrentUser = async () => {
   }
 };
 
-// Método para obtener categorías y documentos desde MongoDB
-export const getCategoriesAndDocuments = async () => {
+export const getUserById = async (id) => {
   try {
-    const response = await axios.get(`${baseURL}/products`);
+    const response = await axios.get(
+      `${baseURL}/users/UserById/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
     return response.data;
   } catch (error) {
-    console.error('Error al obtener categorías y documentos:', error);
+    console.error('Error al obtener el usuario por ID:', error);
     throw error;
   }
 };
@@ -111,6 +120,18 @@ export const signOutUSer = async () => {
   }
 };
 
+// PRODUCTS CRUD
+// Método para obtener categorías y documentos desde MongoDB
+export const getCategoriesAndDocuments = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/products`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener categorías y documentos:', error);
+    throw error;
+  }
+};
+
 export const getProducts = async () => {
   try {
     const response = await axios.get(`${baseURL}/products`);
@@ -137,7 +158,7 @@ export const updateProduct = async (id, productDetails) => {
       `${baseURL}/products/${id}`,
       productDetails
     );
-    
+
     return response.data;
   } catch (error) {
     console.error('Error al actualizar producto:', error);
@@ -161,6 +182,8 @@ export const deleteProduct = async (id) => {
   }
 };
 
+
+// ORDERS CRUD
 export const getOrders = async () => {
   try {
     const response = await axios.get(`${baseURL}/orders`);
