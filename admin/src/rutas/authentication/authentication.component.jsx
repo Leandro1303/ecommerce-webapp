@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../store/user/user.selector.js';
 
 import './authentication.styles.css';
-import Spinner from '../../componentes/spinner/spinner.component.jsx';
+import Button from '../../componentes/button/button.component.jsx';
 // import Spinner from '../../componentes/spinner/spinner.component.jsx';
 
 const defaultUser = {
@@ -80,7 +80,11 @@ const Authentication = () => {
             label="Password"
             required
           />
-          <button type="submit" className="addproduct-btn">{loading ? (<Spinner />) : "Login"}</button>
+          <Button
+            type="submit"
+            buttonType="green"
+            isLoading={loading}
+          >Login</Button>
         </form>
       </div>
     </div>

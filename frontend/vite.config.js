@@ -16,5 +16,4 @@ export default defineConfig({
   define: {
     'process.env': process.env
   },
-  base: "/ecommerce-webapp/frontend/"
 })

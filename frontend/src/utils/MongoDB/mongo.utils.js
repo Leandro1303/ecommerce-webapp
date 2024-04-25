@@ -1,15 +1,15 @@
 import axios from 'axios';
 
 // URL base de la API para acceder a los endpoints relacionados con la base de datos MongoDB
-const baseURL = 'http://localhost:5555';
-export const backendURL = "https://ecommerce-webapp-backend.onrender.com"
+// const baseURL = 'http://localhost:5555';
+export const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const token = localStorage.getItem('token');
 
 // GET CATEGORIES AND DOCUMENTS
 export const getCategoriesAndDocuments = async () => {
   try {
-    const response = await axios.get(`${baseURL}/products`);
+    const response = await axios.get(`${backendURL}/products`);
     return response.data;
   } catch (error) {
     console.error('Error al obtener categorías y documentos:', error);
@@ -21,7 +21,7 @@ export const loginUser = async ({ email, password }) => {
   if (!email || !password) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users/login`, { email, password });
+    const response = await axios.post(`${backendURL}/users/login`, { email, password });
     localStorage.setItem('token', response.data.token);
     return response.data.token;
   } catch (error) {
@@ -35,7 +35,7 @@ export const signInWithEmailAndPassword = async ({ email, password }) => {
   if (!email || !password) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users/login`, { email, password });
+    const response = await axios.post(`${backendURL}/users/login`, { email, password });
     return response.data;
   } catch (error) {
     console.error('Error al iniciar sesión con correo y contraseña:', error);
@@ -46,7 +46,7 @@ export const signInWithEmailAndPassword = async ({ email, password }) => {
 // Método para obtener el usuario actual en MongoDB
 export const getCurrentUser = async () => {
   try {
-    const response = await axios.get(`${baseURL}/users/me`, {
+    const response = await axios.get(`${backendURL}/users/me`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -66,7 +66,7 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users`, {
+    const response = await axios.post(`${backendURL}/users`, {
       _id: userAuth._id,
       name: userAuth.name,
       email: userAuth.email,
@@ -84,7 +84,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password, name) 
   if (!email || !password) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users`, { email, password, name });
+    const response = await axios.post(`${backendURL}/users`, { email, password, name });
     return response.data;
   } catch (error) {
     console.error('Error al crear el usuario con correo y contraseña:', error);
@@ -96,7 +96,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password, name) 
 export const signOutUSer = async () => {
   try {
     await axios.post(
-      `${baseURL}/users/logout`,
+      `${backendURL}/users/logout`,
       null, // El cuerpo de la solicitud está vacío
       {
         headers: {
@@ -128,7 +128,7 @@ export const createOrder = async (currentUser, cartItems, amount) => {
       price: item.price
     }));
     console.log(productsData);
-    await axios.post(`${baseURL}/orders`, {
+    await axios.post(`${backendURL}/orders`, {
       user: currentUser._id,
       products: productsData,
       orderStatus: "pending",
@@ -144,7 +144,7 @@ export const createOrder = async (currentUser, cartItems, amount) => {
 export const fetchOrders = async () => {
   try {
     const response = await axios.get(
-      `${baseURL}/orders/my-orders`,
+      `${backendURL}/orders/my-orders`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -161,7 +161,7 @@ export const fetchOrders = async () => {
 
 export const fetchProductById = async (id) => {
   try {
-    const response = await axios.get(`${baseURL}/products/${id}`);
+    const response = await axios.get(`${backendURL}/products/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);

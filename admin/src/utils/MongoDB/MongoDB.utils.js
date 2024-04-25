@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // URL base de la API para acceder a los endpoints relacionados con la base de datos MongoDB
-const baseURL = 'http://localhost:5555';
+// const baseURL = 'http://localhost:5555';
 export const backendURL = import.meta.env.VITE_BACKEND_URL;
 const token = localStorage.getItem("token");
 
@@ -10,7 +10,7 @@ export const loginUser = async (credentials) => {
   if (!credentials) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users/login`, credentials);
+    const response = await axios.post(`${backendURL}/users/login`, credentials);
     localStorage.setItem('token', response.data.token);
     return response.data.token;
   } catch (error) {
@@ -24,7 +24,7 @@ export const signInWithEmailAndPassword = async (credentials) => {
   if (!credentials) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users/login`, credentials);
+    const response = await axios.post(`${backendURL}/users/login`, credentials);
     return response.data;
   } catch (error) {
     console.error('Error al iniciar sesión con correo y contraseña:', error);
@@ -36,7 +36,7 @@ export const signInWithEmailAndPassword = async (credentials) => {
 export const getCurrentUser = async () => {
   try {
     const response = await axios.get(
-      `${baseURL}/users/me`,
+      `${backendURL}/users/me`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -53,7 +53,7 @@ export const getCurrentUser = async () => {
 export const getUserById = async (id) => {
   try {
     const response = await axios.get(
-      `${baseURL}/users/UserById/${id}`,
+      `${backendURL}/users/UserById/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -75,7 +75,7 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users`, {
+    const response = await axios.post(`${backendURL}/users`, {
       _id: userAuth._id,
       name: userAuth.name,
       email: userAuth.email,
@@ -93,7 +93,7 @@ export const createAuthUserWithEmailAndPassword = async (credentials) => {
   if (!credentials) return;
 
   try {
-    const response = await axios.post(`${baseURL}/users`, { credentials });
+    const response = await axios.post(`${backendURL}/users`, { credentials });
     return response.data;
   } catch (error) {
     console.error('Error al crear el usuario con correo y contraseña:', error);
@@ -106,7 +106,7 @@ export const signOutUSer = async () => {
   try {
     const token = localStorage.getItem('token');
     await axios.post(
-      `${baseURL}/users/logout`,
+      `${backendURL}/users/logout`,
       null, // El cuerpo de la solicitud está vacío
       {
         headers: {
@@ -124,7 +124,7 @@ export const signOutUSer = async () => {
 // Método para obtener categorías y documentos desde MongoDB
 export const getCategoriesAndDocuments = async () => {
   try {
-    const response = await axios.get(`${baseURL}/products`);
+    const response = await axios.get(`${backendURL}/products`);
     return response.data;
   } catch (error) {
     console.error('Error al obtener categorías y documentos:', error);
@@ -134,7 +134,7 @@ export const getCategoriesAndDocuments = async () => {
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get(`${baseURL}/products`);
+    const response = await axios.get(`${backendURL}/products`);
     return response.data;
   } catch (error) {
     console.error('Error al obtener productos:', error);
@@ -144,7 +144,7 @@ export const getProducts = async () => {
 
 export const addProduct = async (productDetails) => {
   try {
-    const response = await axios.post(`${baseURL}/products`, productDetails);
+    const response = await axios.post(`${backendURL}/products`, productDetails);
     return response.data;
   } catch (error) {
     console.error('Error al agregar producto:', error);
@@ -155,7 +155,7 @@ export const addProduct = async (productDetails) => {
 export const updateProduct = async (id, productDetails) => {
   try {
     const response = await axios.put(
-      `${baseURL}/products/${id}`,
+      `${backendURL}/products/${id}`,
       productDetails
     );
 
@@ -168,7 +168,7 @@ export const updateProduct = async (id, productDetails) => {
 
 export const deleteProduct = async (id) => {
   try {
-    const response = await axios.delete(`${baseURL}/products/${id}`, {
+    const response = await axios.delete(`${backendURL}/products/${id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -186,7 +186,7 @@ export const deleteProduct = async (id) => {
 // ORDERS CRUD
 export const getOrders = async () => {
   try {
-    const response = await axios.get(`${baseURL}/orders`);
+    const response = await axios.get(`${backendURL}/orders`);
     return response.data;
   } catch (error) {
     console.error('Error al obtener pedidos:', error);
@@ -196,7 +196,7 @@ export const getOrders = async () => {
 
 export const deleteOrder = async (id) => {
   try {
-    const response = await axios.delete(`${baseURL}/orders/${id}`, {
+    const response = await axios.delete(`${backendURL}/orders/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
