@@ -12,7 +12,7 @@ export const ProductCartContainer = styled(Link)`
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 10px 10px 20px 10px;
+  padding: 10px 10px 7px 10px;
 
   @media (prefers-color-scheme: dark) {
     background: var(--color-gradient-dark) ;
@@ -26,6 +26,7 @@ export const ProductCartContainer = styled(Link)`
     width: 100%;
     height: 95%;
     object-fit: cover;
+    aspect-ratio: 1/1;
     margin-bottom: 5px;
     border-radius: 15px;
     transition:var(--fast-transition);
@@ -55,20 +56,23 @@ export const ProductCartContainer = styled(Link)`
 
 export const CardFooter = styled.div`
   width: 100%;
-  height: 5%;
+  min-height: 5%;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px 10px 0;
 `;
 
 export const Name = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: start;
-  overflow: hidden;
+  padding: 20px 20px 20px 0;
   text-overflow: ellipsis;
   height: 18px;
 `;
 
 export const Price = styled.span`
-  /* font-weight: bold; */
+  font-weight: bold;
 `;

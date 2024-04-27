@@ -40,8 +40,8 @@ const Footer = () => {
           <SocialMediaContainer key={index}>
             <DeveloperName>{dev.name}</DeveloperName>
             <SocialMediaWrapper>
-                <SocialMediaIcon src={Linkedin} />
-                <SocialMediaIcon src={isDarkMode} />
+                <a href={dev.linkedin}><SocialMediaIcon src={Linkedin} /></a>
+                <a href={dev.github}><SocialMediaIcon src={isDarkMode} /></a>
             </SocialMediaWrapper>
           </SocialMediaContainer>
         ))}
