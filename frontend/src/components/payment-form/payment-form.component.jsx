@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import axios from "axios";
 
 import {
   selectCartTotal,
@@ -10,7 +11,7 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import { clearCart } from "../../store/cart/cart.action";
 
 import { FormContainer } from "./payment-form.styles";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import Button from "../button/button.component";
 import { useNavigate } from "react-router-dom";
 
 import { PaymentFormContainer } from "./payment-form.styles";
@@ -42,39 +43,40 @@ const PaymentForm = () => {
       return;
     }
     setIsProcessingPayment(true);
-    const response = await fetch("/.netlify/functions/create-payment-intent", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ amount: amount * 100 }),
-    }).then((res) => {
-      return res.json();
-    });
-    console.log(response);
 
-    const clientSecret = response.paymentIntent.client_secret;
+    try {
+      // Utiliza axios para realizar la solicitud POST al servidor local
+      const response = await axios.post("http://localhost:5555/paymentIntent", {
+        amount: amount * 100,
+      });
 
-    const paymentResult = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: currentUser ? currentUser.email : "Guest User",
+      const clientSecret = response.data.clientSecret;
+
+      const paymentResult = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: currentUser ? currentUser.email : "Guest User",
+          },
         },
-      },
-    });
-    console.log("Current User", currentUser, "Payment Result", paymentResult);
-    setIsProcessingPayment(false);
+      });
 
-    if (paymentResult.error) {
-      alert(paymentResult.error.message);
-    } else {
-      if (paymentResult.paymentIntent.status === "succeeded") {
-        alert("Payment Successful!");
-        await makeOrder();
-        clearItemsFromCart();
-        navigate("/payment-success");
+      console.log("Current User", currentUser, "Payment Result", paymentResult);
+      setIsProcessingPayment(false);
+
+      if (paymentResult.error) {
+        alert(paymentResult.error.message);
+      } else {
+        if (paymentResult.paymentIntent.status === "succeeded") {
+          alert("Payment Successful!");
+          await makeOrder();
+          clearItemsFromCart();
+          navigate("/payment-success");
+        }
       }
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      setIsProcessingPayment(false);
     }
   };
 
@@ -84,7 +86,7 @@ const PaymentForm = () => {
         <h2>Credit Card Payment:</h2>
         <CardElement hidePostalCode={true} />
         <Button
-          buttonType={BUTTON_TYPE_CLASSES.inverted}
+          buttonType="inverted"
           isLoading={isProcessingPayment}
         >
           Pay Now

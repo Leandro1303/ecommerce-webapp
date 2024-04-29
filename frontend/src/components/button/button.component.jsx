@@ -4,8 +4,8 @@ import {
   BaseButton,
   GoogleSignInButton,
   InvertedButton,
-  ButtonSpinner
 } from "./button.styles";
+import { SpinnerContainer } from "../spinner/spinner.styles";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BUTTON_TYPE_CLASSES = {
@@ -26,7 +26,7 @@ const Button = ({ children, buttonType, isLoading, ...otherProps }) => {
   const CustomButton = getButton(buttonType);
   return (
     <CustomButton disable={isLoading} {...otherProps}>
-      {isLoading ? <ButtonSpinner /> : children}
+      {isLoading ? <SpinnerContainer /> : children}
     </CustomButton>
   );
 };
