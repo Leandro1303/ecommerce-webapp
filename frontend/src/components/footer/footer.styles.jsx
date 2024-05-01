@@ -1,13 +1,17 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
+import { AiFillInstagram } from "react-icons/ai";
+import { AiFillTwitterSquare } from "react-icons/ai";
+import { AiFillFacebook } from "react-icons/ai";
 
 const FooterContainerColors = css`
     @media (prefers-color-scheme: dark) {
-        background: var(--color-gradient-dark);
+        background-color:var(--color-primary);
         color: #f8f9fa;
     }
 
     @media (prefers-color-scheme: light) {
-      background: var(--color-gradient);
+        background-color:var(--color-footer-light);
         color: #343a40;
     }
 `;
@@ -46,14 +50,20 @@ export const CopyRight = styled.p`
     ${FooterLinkColors}
     text-decoration: none;
     transition: color 0.3s;
-    font-size: 18px;
+    font-size: 1em;
 `;
+
+export const Line = styled.div`
+  border-top: 1px solid #6c757d;
+  width: 80%;
+`
 
 export const DevsContainer = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     flex-direction: row;
-    width: 100%;
+    width: 50%;
+    font-size: 1em;
 `;
 
 export const SocialMediaContainer = styled.div`
@@ -69,17 +79,63 @@ export const SocialMediaContainer = styled.div`
 
 export const DeveloperName = styled.p`
     margin: 0 10px;
+    font-size: 1em;
 `;
 
 export const SocialMediaWrapper = styled.div`
     display: flex;
     justify-content: space-evenly;
     width: 40%;
-    
 `;
 
 export const SocialMediaIcon = styled.img`
-    width: 30px;
+    width: 1.3em;
     aspect-ratio: 1/1;
     cursor: pointer;
+
 `;
+
+export const About = styled(Link)`
+  ${FooterLinkColors}
+    transition: color 0.3s;
+    font-size: 1em;
+    cursor: pointer;
+`
+
+export const Title = styled.h1`
+font-size: 1.5em;
+`
+
+export const WebMapContainer = styled.div`
+  font-size: 1em;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 15%;
+  justify-content: center;
+  align-items: center;
+`
+
+export const WebMap = styled(Link)`
+  font-size: 1em;
+  padding: 10px;
+`
+
+export const ContactsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 2em;
+  padding-bottom: 10px;
+`
+
+export const Instagram = styled(AiFillInstagram)`
+  cursor: pointer;
+`
+
+export const Twitter = styled(AiFillTwitterSquare)`
+  cursor: pointer;
+`
+
+export const Facebook = styled(AiFillFacebook)`
+  cursor: pointer;
+`

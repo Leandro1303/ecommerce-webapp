@@ -6,6 +6,15 @@ import {
   CopyRight,
   SocialMediaWrapper,
   DevsContainer,
+  Line,
+  About,
+  Title,
+  WebMapContainer,
+  WebMap,
+  ContactsContainer,
+  Instagram,
+  Twitter,
+  Facebook
 } from './footer.styles';
 
 import { DEV_CONTACTS } from '../../dev-contacts';
@@ -35,6 +44,21 @@ const Footer = () => {
 
   return (
     <FooterContainer>
+      
+      <Title>
+        Follow Us!
+      </Title>
+
+      <ContactsContainer>
+        <Instagram/>
+        <Twitter />
+        <Facebook />
+      </ContactsContainer>
+      
+      <Line />
+      <Title>
+        Contacts
+      </Title>
       <DevsContainer>
         {DEV_CONTACTS.map((dev, index) => (
           <SocialMediaContainer key={index}>
@@ -46,6 +70,32 @@ const Footer = () => {
           </SocialMediaContainer>
         ))}
       </DevsContainer>
+      <Line />
+        <Title>
+          Web Map
+        </Title>
+      <WebMapContainer>
+          <WebMap to='http://localhost:5173/'>
+            Home
+          </WebMap>
+          <WebMap to='/shop/Hats'>
+            Hats
+          </WebMap>
+          <WebMap to='/shop/Jackets'>
+            Jackets
+          </WebMap>
+          <WebMap to='/shop/Sneakers'>
+            Sneakers
+          </WebMap>
+          <WebMap to='/shop/Womens'>
+            Womens
+          </WebMap>
+          <WebMap to='/shop/Mens'>
+            Mens
+          </WebMap>
+      </WebMapContainer>
+      <Line />
+      <About to='/about'>About</About>
       <CopyRight>&copy; 2024 - All rights reserved</CopyRight>
     </FooterContainer>
   )

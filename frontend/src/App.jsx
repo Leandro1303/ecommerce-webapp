@@ -12,6 +12,7 @@ import Footer from './components/footer/footer.component'
 
 import './App.css'
 import PaymentSuccess from './routes/payment-success/payment-success.component'
+import AboutComponent from './routes/about/about.component'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path='/product/*' element={<Product />} />
             <Route path="/profile/*" element={<Profile />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path='/about' element={<AboutComponent />} />
           </Route>
         </Routes>
       </div>
