@@ -1,8 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { AiFillInstagram } from "react-icons/ai";
-import { AiFillTwitterSquare } from "react-icons/ai";
-import { AiFillFacebook } from "react-icons/ai";
 
 const FooterContainerColors = css`
     @media (prefers-color-scheme: dark) {
@@ -123,19 +120,8 @@ export const WebMap = styled(Link)`
 
 export const ContactsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 5px;
   font-size: 2em;
   padding-bottom: 10px;
-`
-
-export const Instagram = styled(AiFillInstagram)`
-  cursor: pointer;
-`
-
-export const Twitter = styled(AiFillTwitterSquare)`
-  cursor: pointer;
-`
-
-export const Facebook = styled(AiFillFacebook)`
-  cursor: pointer;
-`
+`;
