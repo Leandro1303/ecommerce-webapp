@@ -12,6 +12,10 @@ export const PaymentFormContainer = styled.div`
 export const FormContainer = styled.form`
     height: 100px;
     min-width: 500px;
+
+    input{
+        color: white;
+    }
 `;
 
 export const PaymentButton = styled(Button)`

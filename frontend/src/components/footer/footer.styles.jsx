@@ -57,7 +57,7 @@ export const Line = styled.div`
 
 export const DevsContainer = styled.div`
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-direction: row;
     width: 50%;
     font-size: 1em;

@@ -12,8 +12,6 @@ const defaultFormFields = {
     password: '',
 };
 
-
-
 const SignInForm = () => {
     const dispatch = useDispatch();
     const [ formFields, setFormFields ] = useState(defaultFormFields);
@@ -32,14 +30,13 @@ const SignInForm = () => {
             resetFormFields();
             navigate('/');
         } catch (error) {
+            console.log(error.code);
             switch(error.code) {
                 case 'auth/wrong-password':
-                    alert('Incorrect password for this email.');
-                break;
+                    return alert('Incorrect password for this email.');
                 
                 case 'auth/user-not-found':
-                    alert('No user associated with this email.');
-                break;
+                    return alert('No user associated with this email.');
                 default: break;
             }
         }

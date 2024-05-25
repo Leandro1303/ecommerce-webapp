@@ -18,7 +18,7 @@ const CheckoutAddress = () => {
         <input className="field" type="text" placeholder="Phone" value={phone}></input>
       </div>
     </div>
-  )
+  );
 }
 
 export default CheckoutAddress

@@ -7,7 +7,7 @@ export const ProductCartContainer = styled(Link)`
   flex-direction: column;
   height: 350px;
   width: 222px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
   align-items: center;
   position: relative;
@@ -28,7 +28,7 @@ export const ProductCartContainer = styled(Link)`
     object-fit: cover;
     aspect-ratio: 1/1;
     margin-bottom: 5px;
-    border-radius: 15px;
+    border-radius: 7px;
     transition:var(--fast-transition);
   }
 

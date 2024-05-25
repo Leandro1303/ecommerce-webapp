@@ -109,7 +109,7 @@ const Product = () => {
             <p className="info-container-other">
               ASIN/GTIN: B0BG94N8QQ<br></br>
               Ships from: Warehouse 1<br></br>
-              Manufactured by: San Diego Co.
+              Manufactured at: San Diego, CO.
             </p>
           </div>
         </div>
